@@ -1,5 +1,3 @@
-#!/bin/sh
-
 path=$(pwd)
 
 mkdir -p $path/Configurations
