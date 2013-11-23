@@ -1,3 +1,14 @@
-source ~/dotfiles/main/env
-source ~/dotfiles/main/config
-source ~/dotfiles/main/aliases
+source $HOME/dotfiles/main/env
+source $HOME/dotfiles/main/config
+source $HOME/dotfiles/main/aliases
+##
+# Your previous /Users/jonathanccalixto/.bash_profile file was backed up as /Users/jonathanccalixto/.bash_profile.macports-saved_2012-11-22_at_23:55:19
+##
+
+# MacPorts Installer addition on 2012-11-22_at_23:55:19: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH # Steam Games request
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

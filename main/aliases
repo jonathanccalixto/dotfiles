@@ -5,7 +5,7 @@ alias less="less -Xr"
 alias tailf="tail -f"
 alias l="ls"
 alias la="ls -a"
-alias ll="ls -lah"
+alias ll="ls -lash"
 alias ls="ls -G"
 
 # secure your moviments and commands
@@ -13,11 +13,19 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias rm="rm -i"
 
+# vagrant comands
+alias vr="vagrant reload"
+alias vu="vagrant up"
+alias vs="vagrant ssh"
+alias vh="vagrant halt"
+alias vd="vagrant destroy -f"
+
 #rails aliases
 alias sa="script/autospec"
 alias ss="script/server"
 alias sc="script/console"
-alias r="rails"
+alias r="bundle exec rails"
+alias rk="bundle exec rake"
 
 alias gib="gem install bundler"
 alias gibp="gem install bundler --pre"

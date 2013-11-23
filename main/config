@@ -47,13 +47,23 @@ BRIGHT_VIOLET="\[$ESC[${BRIGHT};${FG_VIOLET}m\]"
 BRIGHT_CYAN="\[$ESC[${BRIGHT};${FG_CYAN}m\]"
 BRIGHT_WHITE="\[$ESC[${BRIGHT};${FG_WHITE}m\]"
 
-# works with rvm
+# works with rvm or rbenv
 __ruby_version() {
-  which ruby | cut -d/ -f6
+  if [[ -s $HOME/.rvm/scripts/rvm ]] ; then # rvm
+    which ruby | cut -d/ -f6
+  else
+    if which rbenv > /dev/null; then # rbenv
+      ruby -v | cut -d" " -f2
+    fi
+  fi
 }
 
 __gemset () {
   echo $GEM_PATH | cut -d@ -f2 | cut -d: -f1
+}
+
+__ruby_interpreter () {
+  ruby -v | cut -d" " -f1 # rbenv
 }
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -65,5 +75,5 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 PROMPT_COMMAND='history -a'
 export HISTSIZE=100000
-PS1="\n\w $GREEN\$(__git_ps1 ' [%s] ')$YELLOW[\$(__ruby_version)] $BRIGHT_BLUE[\$(__gemset)] $BRIGHT_RED[\t] \n$RESET\$ "
+PS1="\n\w $GREEN\$(__git_ps1 ' [%s] ')$YELLOW[\$(__ruby_version)] $BRIGHT_GREEN[\$(__gemset)] $BRIGHT_RED[\$(__ruby_interpreter)] $BRIGHT_BLUE[\t] \n$RESET\u @ \h\$ "
 export GIT_PS1="$GREEN\$(__git_ps1 ' [%s] ') $RESET\$ "

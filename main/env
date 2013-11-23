@@ -1,8 +1,16 @@
-export EDITOR="vim"
+# export EDITOR="vim"
+export EDITOR="mate -w"
 export MANPAGER='less -Xr'
 
 # rvm
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 # preserve last path on new tabs
 cd () {
@@ -25,10 +33,10 @@ cd () {
     fi;
   done
 
-  echo $PWD > ~/.pwd;
+  echo $PWD > $HOME/.pwd;
 }
 
-if [[ -f ~/.pwd ]] ; then cd `cat ~/.pwd` ; fi
+if [[ -f $HOME/.pwd ]] ; then cd `cat $HOME/.pwd` ; fi
 
 # User specific environment and startup programs
 for i in $HOME/dotfiles/profile.d/*.sh ; do
@@ -52,3 +60,4 @@ for i in $HOME/dotfiles/bash-completion.d/*.sh ; do
 done
 
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME:$PATH
