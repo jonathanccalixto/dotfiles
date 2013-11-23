@@ -3,7 +3,7 @@
 # http://gist.github.com/86875
 
 require "irb/completion"         # activate default completion
-require 'irb/ext/save-history'   # activate default history 
+require 'irb/ext/save-history'   # activate default history
 require "tempfile"               # used for Vim integration
 require 'pp'
 
@@ -24,21 +24,8 @@ end
 # let there be colors
 # just use Wirble for colors, since some enviroments dont have
 # rubygems and wirble installed
-begin
-   require "wirble"
-   Wirble.init(:skip_prompt=>true,:skip_history=>true)
-   Wirble.colorize
-rescue LoadError => e
-   puts "Seems you don't have Wirble installed: #{e}"
-end
 
 # enabling Hirb
-begin
-  require 'hirb'
-  Hirb.enable
-rescue LoadError => e
-  puts "Seems you don't have Hirb installed: #{e}"
-end
 
 # configure vim
 @irb_temp_code = nil
@@ -81,17 +68,25 @@ end
 def rl(file_name = nil)
   if file_name.nil?
     if !@recent.nil?
-      rl(@recent) 
+      rl(@recent)
     else
       puts "No recent file to reload"
     end
   else
     file_name += '.rb' unless file_name =~ /\.rb/
-    @recent = file_name 
+    @recent = file_name
     load "#{file_name}"
   end
 end
 
 alias p pp
 alias quit exit
+
+begin
+  require "pry"
+  Pry.start
+  exit
+rescue LoadError => e
+  warn "Unable to load PRY"
+end
 
