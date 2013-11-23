@@ -1,14 +1,5 @@
 Dotfiles to setup a bash environment.
 This directory needs to be in $HOME/dotfiles
 
-cd $HOME
-mkdir github-projects
-git clone git://github.com/joaovitor/dotfiles.git github-projects/dotfiles
-
-cd $HOME
-ln -s github-projects/dotfiles
-
-./dotfiles/install.sh dotfiles
-
-ln -s dotfiles/bin/git-publish-branch bin/
-ln -s dotfiles/bin/campfire bin/
+cd $HOME # or other path
+. "$(curl -fsSL https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh)"
