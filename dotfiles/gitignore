@@ -28,6 +28,7 @@
 config/database.yml
 coverage
 db/schema.rb
+db/**/*.dump
 tmp
 test
 log/*.log
