@@ -24,15 +24,27 @@ alias vd="vagrant destroy -f"
 alias sa="script/autospec"
 alias ss="script/server"
 alias sc="script/console"
-alias r="bundle exec rails"
-alias rk="bundle exec rake"
+alias r="rails"
 
+#gem install
 alias gib="gem install bundler"
 alias gibp="gem install bundler --pre"
+
+#bundle aliases
 alias bi="bundle install"
 alias bu="bundle update"
 alias bx="bundle exec"
-alias bs="bundle exec rspec"
+alias bo="bundle open"
 alias bir="bundle install --relock"
+alias br="bundle exec rails"
+alias bs="bundle exec rspec"
+alias bc="bundle exec cap"
+alias rk="bundle exec rake"
 
+#servers start
+alias postgressql_start="postgres -D /usr/local/var/postgres"
+alias redis_start="redis-server /usr/local/etc/redis.conf"
+alias mysql_start="mysql.server start"
+
+#vim aliases
 alias v='mvim'
