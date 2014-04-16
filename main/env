@@ -59,5 +59,6 @@ for i in $HOME/dotfiles/bash-completion.d/*.sh ; do
     fi
 done
 
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then export PATH=$PATH:$HOME/.rvm/bin; fi
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME:$PATH

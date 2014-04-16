@@ -75,5 +75,5 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 PROMPT_COMMAND='history -a'
 export HISTSIZE=100000
-PS1="\n\w $GREEN\$(__git_ps1 ' [%s] ')$YELLOW[\$(__ruby_version)] $BRIGHT_GREEN[\$(__gemset)] $BRIGHT_RED[\$(__ruby_interpreter)] $BRIGHT_BLUE[\t] \n$RESET\u @ \h\$ "
-export GIT_PS1="$GREEN\$(__git_ps1 ' [%s] ') $RESET\$ "
+PS1="\u @ \h\n\w $GREEN\$(__git_ps1 ' [%s] ')$YELLOW[\$(__ruby_version)] $BRIGHT_GREEN[\$(__gemset)] $BRIGHT_RED[\$(__ruby_interpreter)] $BRIGHT_BLUE[\t] \n$RESET\$ "
+export GIT_PS1="$GREEN\$(__git_ps1 ' [%s] ')$RESET \$ "
