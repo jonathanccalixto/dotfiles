@@ -5,6 +5,10 @@ install: --env-shebang
 :sources:
 - https://rubygems.org
 - http://gems.github.com/
-:backtrace: false
+:backtrace: true
 :bulk_threshold: 1000
 update: --env-shebang
+
+gem: --ri --rdoc
+install: --rdoc --ri
+update:  --rdoc --ri
