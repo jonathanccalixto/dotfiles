@@ -25,14 +25,14 @@
 
 # Logs and databases #
 ######################
-config/database.yml
-coverage
-db/schema.rb
-db/**/*.dump
-tmp
-test
-stdout
-log/*.log
+/config/database.yml
+/coverage
+/db/schema.rb
+/db/**/*.dump
+/tmp
+/test
+/stdout
+/log/*.log
 *.log
 *.sql
 *.sqlite
@@ -40,11 +40,11 @@ log/*.log
 
 # System config #
 #################
-.rbenv-version
-.rvmrc
-.rspec
-.ruby-version
-.env
+/.rbenv-version
+/.rvmrc
+/.rspec
+/.ruby-version
+/.env
 
 # OS generated files #
 ######################
@@ -64,4 +64,5 @@ Thumbs.db
 
 # Others files
 ###################
-doc/Program*cargo
+# /doc/Program*cargo
+# /config/locales/*

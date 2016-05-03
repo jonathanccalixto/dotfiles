@@ -8,8 +8,8 @@ require "tempfile"               # used for Vim integration
 require 'pp'
 
 # save history using built-in options
-IRB.conf[:SAVE_HISTORY] = 10000000
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
+IRB.conf[:SAVE_HISTORY] = 1_000_000_000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
 # auto-indent
 IRB.conf[:AUTO_INDENT]=true

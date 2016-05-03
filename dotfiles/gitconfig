@@ -1,6 +1,7 @@
 [user]
 	name = You Name Comes Here
 	email = you@yourdomain.example.com
+	signingkey = 8AA2DF05
 [core]
 	editor = vim
 	excludesfile = /Users/jonathanccalixto/.gitignore
@@ -14,14 +15,17 @@
 	meta = blue black bold
 [alias]
 	co = checkout
-	ci = commit
+	ci = commit -S
 	st = status
 	br = branch
 	lg = log --oneline --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lgp = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
 	lga = log --oneline --all --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	mg = merge
-	amend = commit --amend
+	amend = commit -S --amend
 	unstage = reset HEAD
+	lgap = log --oneline --all --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
 [push]
 	default = current
+[credential]
+	helper = cache --timeout=3600
