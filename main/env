@@ -6,7 +6,8 @@ export MANPAGER='less -Xr'
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
 # rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
+# export RBENV_ROOT=/usr/local/var/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # tmuxinator
@@ -15,8 +16,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # preserve last path on new tabs
 cd () {
   builtin cd "$@";
+
   local cwd;
   cwd=$(pwd);
+
   while :; do
     if [[ -z "$cwd" ]] || [[ "$HOME" = "$cwd" ]] || [[ "/" = "$cwd" ]]; then
       if [[ "$rvm_project_rvmrc_default" = 1 ]]; then

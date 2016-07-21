@@ -27,10 +27,11 @@
 ######################
 /config/database.yml
 /coverage
+/public/coverage
 /db/schema.rb
 /db/**/*.dump
 /tmp
-/test
+#/test
 /stdout
 /log/*.log
 *.log
@@ -40,6 +41,7 @@
 
 # System config #
 #################
+/config/cable.yml
 /.rbenv-version
 /.rvmrc
 /.rspec

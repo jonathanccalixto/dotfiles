@@ -1,10 +1,10 @@
 [user]
-	name = You Name Comes Here
+	name = Your Name Comes Here
 	email = you@yourdomain.example.com
-	signingkey = 8AA2DF05
+	signingkey = <GPG pub code>
 [core]
 	editor = vim
-	excludesfile = /Users/jonathanccalixto/.gitignore
+	excludesfile = /home/jonathanccalixto/.gitignore
 [color]
   ui = true
 	branch = auto
@@ -25,6 +25,7 @@
 	amend = commit -S --amend
 	unstage = reset HEAD
 	lgap = log --oneline --all --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+	lgf = log --name-status --decorate --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [push]
 	default = current
 [credential]
