@@ -20,3 +20,5 @@ for original_file in `find ${dotfiles_basedir}/dotfiles.d -maxdepth 1`; do
   fi
 done
 
+# Makes a custom git configuration when doesn't exists
+[[ ! -f "$project/profile.d/git-custom.sh" ]] && touch "$project/profile.d/git-custom.sh"
