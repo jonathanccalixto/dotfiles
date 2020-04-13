@@ -37,4 +37,5 @@ fi
   ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 # Makes a custom git configuration when doesn't exists
-[[ ! -f "$project/profile.d/git-custom.sh" ]] && touch "$project/profile.d/git-custom.sh"
+[[ ! -f "$project/profile.d/git-custom.sh" ]] &&\
+  touch "$project/profile.d/git-custom.sh"
