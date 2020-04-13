@@ -23,5 +23,11 @@ done
 # Installs zsh
 [[ ! -x "$(which zsh)" ]] && sudo apt-get install -y zsh
 
+# Installs oh-my-zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  [[ ! -x "$(which curl)" ]] && sudo apt-get install -y curl
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 # Makes a custom git configuration when doesn't exists
 [[ ! -f "$project/profile.d/git-custom.sh" ]] && touch "$project/profile.d/git-custom.sh"
