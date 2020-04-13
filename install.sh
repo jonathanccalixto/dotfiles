@@ -51,3 +51,5 @@ fi
 # Applies zsh customization
 [[ -z `cat $HOME/.zshrc | grep -i "source $dotfiles/z.sh"` ]] &&\
   echo "\nsource $dotfiles/z.sh\n" >> $HOME/.bashrc
+
+#  ln -s dotfiles/bin/git-publish-branch bin/
