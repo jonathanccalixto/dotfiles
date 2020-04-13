@@ -43,3 +43,7 @@ fi
 # Applies zsh
 [[ -z `cat $HOME/.bashrc | grep -i "[[ -x /bin/zsh ]] && /bin/zsh && exit 0"` ]] &&\
   echo "[[ -x /bin/zsh ]] && /bin/zsh && exit 0\n" >> $HOME/.bashrc
+
+# Installs zinit (old zplugin)
+[[ ! -d "$HOME/.zinit/bin" ]] &&\
+  git clone https://github.com/zdharma/zinit.git $HOME/.zinit/bin
