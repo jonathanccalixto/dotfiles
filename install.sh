@@ -39,3 +39,7 @@ fi
 # Makes a custom git configuration when doesn't exists
 [[ ! -f "$project/profile.d/git-custom.sh" ]] &&\
   touch "$project/profile.d/git-custom.sh"
+
+# Applies zsh
+[[ -z `cat $HOME/.bashrc | grep -i "[[ -x /bin/zsh ]] && /bin/zsh && exit 0"` ]] &&\
+  echo "[[ -x /bin/zsh ]] && /bin/zsh && exit 0\n" >> $HOME/.bashrc
