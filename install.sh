@@ -29,5 +29,12 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+# Installs spaceship
+[[ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]] &&\
+  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+
+[[ -f "$ZSH_CUSTOM/themes/spaceship.zsh-theme" ]] &&\
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
 # Makes a custom git configuration when doesn't exists
 [[ ! -f "$project/profile.d/git-custom.sh" ]] && touch "$project/profile.d/git-custom.sh"
