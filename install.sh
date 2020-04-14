@@ -65,6 +65,10 @@ if [ ! -d $RBENV ]; then
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 fi
 
+# Installs nvm
+[[ ! -d "$HOME/.nvm" ]] &&\
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+
 # Makes shortcut to dotfiles
 for original_file in `find ${dotfiles}/dotfiles.d -maxdepth 1`; do
   file=".`basename $original_file`"
