@@ -1,9 +1,11 @@
-export ZSH="$HOME/.oh-my-zsh"
+# Defines dotfiles path
+export dotfiles="$HOME/.dotfiles"
 
 ZSH_THEME="spaceship"
 
 plugins=(git)
 
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.dotfiles/z.sh
+source $dotfiles/z.sh
