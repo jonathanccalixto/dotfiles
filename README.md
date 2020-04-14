@@ -5,9 +5,11 @@ With it will be installed [zsh](https://www.zsh.org/), [ oh-my-zsh](https://ohmy
 Also [rbenv](https://github.com/rbenv/rbenv), [nvm](https://github.com/nvm-sh/nvm), [git](https://git-scm.com) and some other tools will be installed and configured.
 
 ``
- curl -o- https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | bssh
+ curl -o- https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | bash
 ``
+
 OR
+
 ``
  wget -qO- https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | bash
 ``
