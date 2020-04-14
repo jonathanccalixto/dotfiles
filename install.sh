@@ -44,6 +44,27 @@ if [ -f "$HOME/.zshrc" ]; then
   rm -f $HOME/.zshrc
 fi
 
+# Installs rbenv
+RBENV="$HOME/.rbenv"
+if [ ! -d $RBENV ]; then
+  # Donwloads project
+  git clone https://github.com/rbenv/rbenv.git $RBENV
+
+  # Tries to compile dynamic bash extension to speed up rbenv.
+  cd $RBENV && src/configure && make -C src && cd -
+
+  # Defines plugin path
+  RPLUGINS="$RBENV/plugins"
+
+  # Adds rbenvs's plugins
+  [[ ! -d $RPLUGINS ]] && mkdir -p $RPLUGINS
+  [[ ! -d "$RPLUGINS/ruby-build" ]] && git clone https://github.com/rbenv/ruby-build.git "$RPLUGINS/ruby-build"
+  # [[ ! -d "$RPLUGINS/default-gems" ]] && git clone https://github.com/rbenv/default-gems.git "$RPLUGINS/default-gems"
+
+  # Verifies that rbenv is properly set up using this rbenv-doctor script
+  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+fi
+
 # Makes shortcut to dotfiles
 for original_file in `find ${dotfiles}/dotfiles.d -maxdepth 1`; do
   file=".`basename $original_file`"
