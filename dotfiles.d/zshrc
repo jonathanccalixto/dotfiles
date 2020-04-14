@@ -6,7 +6,7 @@ profiles="$dotfiles/profile.d"
 
 # Imports profiles files
 for extension in (zsh sh); do
-  for profile in `find $profiles -maxdepth 1 -name="*.zsh" | sort`; do
+  for profile in `find $profiles -maxdepth 1 -name "*.$extension" | sort`; do
     source $profile;
   done
 done
