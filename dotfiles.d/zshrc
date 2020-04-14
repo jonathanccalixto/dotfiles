@@ -2,11 +2,11 @@
 export dotfiles="$HOME/.dotfiles"
 
 # Defines profiles path
-profiles="$dotfiles/profiles.d"
+profiles="$dotfiles/profile.d"
 
-plugins=(git)
-
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
-source $dotfiles/z.sh
+# Imports profiles files
+for extension in (zsh sh); do
+  for profile in `find $profiles -maxdepth 1 -name="*.zsh" | sort`; do
+    source $profile;
+  done
+done
