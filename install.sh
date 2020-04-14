@@ -1,5 +1,6 @@
 project="$HOME/Workspace/github/jonathanccalixto/dotfiles"
 dotfiles="$HOME/.dotfiles"
+profiles="$dotfiles/.profile.d"
 
 # Imports project
 [[ ! -d "$project/.git" ]] && git clone https://github.com/jonathanccalixto/dotfiles.git $project
@@ -24,8 +25,7 @@ fi
   ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 # Makes a custom git configuration when doesn't exists
-[[ ! -f "$project/profile.d/git-custom.sh" ]] &&\
-  touch "$project/profile.d/git-custom.sh"
+[[ ! -f "$profiles/02-git-custom.sh" ]] && touch "$project/profile.d/02-git-custom.sh"
 
 # Applies zsh
 [[ -z `cat $HOME/.bashrc | grep -i "[[ -x /bin/zsh ]] && /bin/zsh && exit 0"` ]] &&\
