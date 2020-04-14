@@ -1,8 +1,13 @@
-####Dotfiles to setup a bash environment.
+#### Dotfiles to setup shell environment with zsh.
+
+This project was conceived to configure your shell environment in a simple and easy way.
+With it will be installed [zsh](https://www.zsh.org/), [ oh-my-zsh](https://ohmyz.sh/), [Zinit (plugin manager)](https://github.com/zdharma/zinit) and [spaceship (as theme)](https://github.com/denysdovhan/spaceship-prompt)
+Also [rbenv](https://github.com/rbenv/rbenv), [nvm](https://github.com/nvm-sh/nvm), [git](https://git-scm.com) and some other tools will be installed and configured.
 
 ``
-cd $HOME # or other path
+ curl -o- https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | bssh
 ``
+OR
 ``
- wget -c https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | . install.sh
+ wget -qO- https://raw.github.com/jonathanccalixto/dotfiles/master/install.sh | bash
 ``

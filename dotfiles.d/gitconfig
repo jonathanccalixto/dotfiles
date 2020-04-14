@@ -1,0 +1,31 @@
+[user]
+  name = Jonathan C. Calixto
+  email = jonathan.calixto@maxmilhas.com.br
+[core]
+  editor = vim
+  excludesfile = /home/jonathancalixto/.gitignore
+[color]
+  ui = true
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[color "diff"]
+  meta = blue black bold
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  lg = log --oneline --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lgp = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+  lga = log --oneline --all --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  mg = merge
+  amend = commit --amend
+  unstage = reset HEAD
+  lgap = log --oneline --all --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+  lgf = log --name-status --decorate --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[push]
+  default = current
+[credential]
+  helper = cache --timeout=3600
