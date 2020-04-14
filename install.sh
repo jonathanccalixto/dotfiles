@@ -17,6 +17,8 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+
 # Installs spaceship
 [[ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]] &&\
   git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
