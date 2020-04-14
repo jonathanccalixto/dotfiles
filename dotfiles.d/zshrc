@@ -1,7 +1,8 @@
 # Defines dotfiles path
 export dotfiles="$HOME/.dotfiles"
 
-ZSH_THEME="spaceship"
+# Defines profiles path
+profiles="$dotfiles/profiles.d"
 
 plugins=(git)
 
