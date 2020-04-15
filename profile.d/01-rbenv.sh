@@ -2,24 +2,26 @@
 RBENV=$HOME/.rbenv
 
 # Imports rbenv configuration
-if [ -d $RBENV ]: then
+if [ -d $RBENV ]; then
   # Adds rbenv executables in path
   export PATH="$RBENV/bin:$PATH"
+  # pwd=$PWD
 
-  # Imports rbenv completions
-  [[ -f "$RBENV/completions/rbenv.zsh"]] && source "$RBENV/completions/rbenv.zsh"
+  # # Imports rbenv completions
+  # if [ -f "$RBENV/completions/rbenv.zsh" ]; then
+  #   source "$RBENV/completions/rbenv.zsh"
+  # fi
 
-  # Updates rbenv
-  cd $RBENV
-  git pull -q
-  cd -
+  # # Updates rbenv
+  # cd $RBENV && git pull -q
 
-  # Updates plugins
-  for plugin in `find $RBENV/plugins/ - maxdepth 1`; do
-    cd $plugin
-    git pull -q
-    cd -
-  done
+  # # Updates plugins
+  # for plugin in `find "$RBENV/plugins" -maxdepth 1`; do
+  #   [[ -d "$plugin/."git ]] && cd $plugin && git pull -q
+  # done
 
-  eval "$(rbenv iniy -t)"
+  # # returns to original path
+  # cd $pwd
+
+  eval "$(rbenv init -)"
 fi

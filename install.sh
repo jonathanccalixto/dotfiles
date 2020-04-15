@@ -47,7 +47,7 @@ fi
 echo "\033[0;32m## \033[1;34mspaceship theme\033[0;32m imported\033[0;37;00m"
 
 # Configures spaceship theme
-if [ -f "$ZSH_THEMES/spaceship.zsh-theme" ]; then
+if [ ! -f "$ZSH_THEMES/spaceship.zsh-theme" ]; then
   echo "\033[0;32m## Linking \033[1;34mspaceship theme\033[0;32m on \033[1;34m$ZSH_THEMES\033[0;37;00m"
   ln -snfv "$ZSH_THEMES/spaceship-prompt/spaceship.zsh-theme" "$ZSH_THEMES/spaceship.zsh-theme"
 fi
