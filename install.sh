@@ -135,6 +135,9 @@ if [ ! -d "$NVM_DIR" ]; then
 fi
 echo "\033[0;32m## \033[1;34mnvm\033[0;32m installed\033[0;37;00m"
 
+echo "" > $dotfiles/dotfiles.d/gitconfig
+echo "\033[0;32m## \033[1;34mgitconfig\033[0;32m made\033[0;37;00m"
+
 # Makes shortcut to dotfiles
 for original_file in `find $dotfiles/dotfiles.d/* -maxdepth 1 | sort`; do
   file=".`basename $original_file`"
