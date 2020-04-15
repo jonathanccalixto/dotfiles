@@ -16,3 +16,4 @@ tmtags
 
 # Customs
 profile.d/git-custom.sh
+dotfiles.d/gitconfig
