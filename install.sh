@@ -4,6 +4,13 @@ project="$HOME/Workspace/github/jonathanccalixto/dotfiles"
 dotfiles="$HOME/.dotfiles"
 profiles="$dotfiles/.profile.d"
 
+# Installs git
+if [ ! -x "$(which git)" ]; then
+  echo "\033[0;32m## Installing \033[1;34mgit\033[0;37;00m"
+  sudo apt-get install -y git
+fi
+echo "\033[0;32m## \033[1;34mgit\033[0;32m installed\033[0;37;00m"
+
 # Imports project
 if [ ! -d "$project/.git" ]; then
   echo "\033[0;32m## Importing \033[1;34mdotfiles\033[0;32m project\033[0;37;00m"
