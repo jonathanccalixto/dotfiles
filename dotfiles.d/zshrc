@@ -4,9 +4,14 @@ export dotfiles="$HOME/.dotfiles"
 # Defines profiles path
 profiles="$dotfiles/profile.d"
 
+# Makes a custom git configuration when doesn't exists
+touch "$profiles/02-git-custom.sh"
+
 # Imports profiles files
-for extension in (zsh sh); do
-  for profile in `find $profiles -maxdepth 1 -name "*.$extension" | sort`; do
-    source $profile;
-  done
+for profile in `find $profiles -maxdepth 1 -name "*.zsh" | sort`; do
+  source $profile;
+done
+
+for profile in `find $profiles -maxdepth 1 -name "*.sh" | sort`; do
+  source $profile;
 done

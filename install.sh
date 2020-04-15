@@ -1,85 +1,144 @@
+#!/bin/bash
+
 project="$HOME/Workspace/github/jonathanccalixto/dotfiles"
 dotfiles="$HOME/.dotfiles"
 profiles="$dotfiles/.profile.d"
 
 # Imports project
-[[ ! -d "$project/.git" ]] && git clone https://github.com/jonathanccalixto/dotfiles.git $project
+if [ ! -d "$project/.git" ]; then
+  echo "\033[0;32m## Importing \033[1;34mdotfiles\033[0;32m project\033[0;37;00m"
+  git clone https://github.com/jonathanccalixto/dotfiles.git $project
+fi
+echo "\033[0;32m## \033[1;34mdotfiles\033[0;32m imported\033[0;37;00m"
 
 # Makes shotcut to dotfiles folder in home path
-[[ ! -d $dotfiles ]] && ln -s $project $dotfiles
+if [ ! -d $dotfiles ]; then
+  echo "\033[0;32m## Linking \033[1;34mdotfiles\033[0;32m on \033[1;34m$HOME\033[0;37;00m"
+  ln -snfv $project $dotfiles
+fi
+echo "\033[0;32m## \033[1;34mdotfiles\033[0;32m linked on \033[1;34m$HOME\033[0;37;00m"
 
 # Installs zsh
-[[ ! -x "$(which zsh)" ]] && sudo apt-get install -y zsh
+if [ ! -x "$(which zsh)" ]; then
+  echo "\033[0;32m## Installing \033[1;34mzsh\033[0;37;00m"
+  sudo apt-get install -y zsh
+fi
+echo "\033[0;32m## \033[1;34mzsh\033[0;32m installed\033[0;37;00m"
 
 # Installs oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  [[ ! -x "$(which curl)" ]] && sudo apt-get install -y curl
+  if [ ! -x "$(which curl)" ]; then
+    echo "\033[0;32m#### Installing \033[1;34mcurl\033[0;37;00m"
+    sudo apt-get install -y curl
+  fi
+  echo "\033[0;32m#### \033[1;34mcurl\033[0;32m installed\033[0;37;00m"
+
+  echo "\033[0;32m## Installing \033[1;34m.oh-my-zsh\033[0;37;00m"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+echo "\033[0;32m## \033[1;34m.oh-my-zsh\033[0;32m installed\033[0;37;00m"
 
-ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+# Installs spaceship theme
+ZSH_THEMES="$HOME/.oh-my-zsh/custom/themes"
+if [ ! -d "$ZSH_THEMES/spaceship-prompt" ]; then
+  echo "\033[0;32m## Importing \033[1;34mspaceship theme\033[0;32m project\033[0;37;00m"
+  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_THEMES/spaceship-prompt"
+fi
+echo "\033[0;32m## \033[1;34mspaceship theme\033[0;32m imported\033[0;37;00m"
 
-# Installs spaceship
-[[ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]] &&\
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-
-[[ -f "$ZSH_CUSTOM/themes/spaceship.zsh-theme" ]] &&\
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-
-# Makes a custom git configuration when doesn't exists
-[[ ! -f "$profiles/02-git-custom.sh" ]] && touch "$project/profile.d/02-git-custom.sh"
+# Configures spaceship theme
+if [ -f "$ZSH_THEMES/spaceship.zsh-theme" ]; then
+  echo "\033[0;32m## Linking \033[1;34mspaceship theme\033[0;32m on \033[1;34m$ZSH_THEMES\033[0;37;00m"
+  ln -snfv "$ZSH_THEMES/spaceship-prompt/spaceship.zsh-theme" "$ZSH_THEMES/spaceship.zsh-theme"
+fi
+echo "\033[0;32m## \033[1;34mspaceship theme\033[0;32m linked on \033[1;34m$ZSH_THEMES\033[0;37;00m"
 
 # Applies zsh
-[[ -z `cat $HOME/.bashrc | grep -i "[[ -x /bin/zsh ]] && /bin/zsh && exit 0"` ]] &&\
-  echo "[[ -x /bin/zsh ]] && /bin/zsh && exit 0\n" >> $HOME/.bashrc
+bash_applied=$(grep -i "if \[ -x /bin/zsh \]; then" $HOME/.bashrc)
+if [ -z "$bash_applied" ]; then
+  echo "\033[0;32m## Setting \033[1;34mzsh\033[0;32m on \033[1;34m$HOME/.bashrc\033[0;37;00m"
+  echo "\nif [ -x /bin/zsh ]; then\n  . /bin/zsh\ && exit 0\nfi" >> $HOME/.bashrc
+fi
+echo "\033[0;32m## \033[1;34mzsh\033[0;32m setted on \033[1;34m$HOME/.bashrc\033[0;37;00m"
 
 # Installs zinit (old zplugin)
-[[ ! -d "$HOME/.zinit/bin" ]] &&\
+if [ ! -d "$HOME/.zinit/bin" ]; then
+  echo "\033[0;32m## Importing \033[1;34mZinit\033[0;32m project\033[0;37;00m"
   git clone https://github.com/zdharma/zinit.git $HOME/.zinit/bin
-
-# Applies zsh customization
-if [ -f "$HOME/.zshrc" ]; then
-  [[ ! -f "$HOME/.zshrc.old" ]] && mv $HOME/.zshrc $HOME/.zshrc.old
-
-  rm -f $HOME/.zshrc
 fi
+echo "\033[0;32m## \033[1;34mZinit\033[0;32m imported\033[0;37;00m"
+
+# makes zshrc backup
+zshrc=$HOME/.zshrc
+if [ -f "$zshrc" ]; then
+  echo "\033[0;32m## Making \033[1;34mzshrc\033[0;32m backup\033[0;37;00m"
+  if [ ! -f "$zshrc.pre" ]; then
+    mv "$zshrc" "$zshrc.pre"
+  else
+    mv "$zshrc" "$zshrc.pre-$(date)"
+  fi
+fi
+echo "\033[0;32m## Backup of \033[1;34mzshrc\033[0;32m made\033[0;37;00m"
 
 # Installs rbenv
 RBENV="$HOME/.rbenv"
 if [ ! -d $RBENV ]; then
   # Donwloads project
+  echo "\033[0;32m## Importing \033[1;34mrbenv\033[0;32m project\033[0;37;00m"
   git clone https://github.com/rbenv/rbenv.git $RBENV
+  echo "\033[0;32m## \033[1;34mrbenv\033[0;32m imported\033[0;37;00m"
 
   # Tries to compile dynamic bash extension to speed up rbenv.
+  echo "\033[0;32m## Configuring \033[1;34mrbenv\033[0;32m\033[0;37;00m"
   cd $RBENV && src/configure && make -C src && cd -
+  echo "\033[0;32m## \033[1;34mrbenv\033[0;32m configured\033[0;37;00m"
 
   # Defines plugin path
   RPLUGINS="$RBENV/plugins"
 
   # Adds rbenvs's plugins
-  [[ ! -d $RPLUGINS ]] && mkdir -p $RPLUGINS
-  [[ ! -d "$RPLUGINS/ruby-build" ]] && git clone https://github.com/rbenv/ruby-build.git "$RPLUGINS/ruby-build"
-  # [[ ! -d "$RPLUGINS/default-gems" ]] && git clone https://github.com/rbenv/default-gems.git "$RPLUGINS/default-gems"
+  if [ ! -d $RPLUGINS ]; then
+    mkdir -p $RPLUGINS
+  fi
+
+  if [ ! -d "$RPLUGINS/ruby-build" ]; then
+  echo "\033[0;32m## Importing \033[1;34mruby-build\033[0;32m project\033[0;37;00m"
+    git clone https://github.com/rbenv/ruby-build.git "$RPLUGINS/ruby-build"
+  fi
+  echo "\033[0;32m## \033[1;34mruby-build\033[0;32m imported\033[0;37;00m"
+
+  # if [ ! -d "$RPLUGINS/default-gems" ]; then
+  # echo "\033[0;32m## Importing \033[1;34mdefault-gems\033[0;32m project\033[0;37;00m"
+  #   git clone https://github.com/rbenv/default-gems.git "$RPLUGINS/default-gems"
+  # fi
+  # echo "\033[0;32m## \033[1;34mdefault-gems\033[0;32m imported\033[0;37;00m"
 
   # Verifies that rbenv is properly set up using this rbenv-doctor script
+  echo "\033[0;32m## Checking \033[1;34mrbenv\033[0;32m status\033[0;37;00m"
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+  echo "\033[0;32m## \033[1;34mrbenv\033[0;32m cheked\033[0;37;00m"
 fi
+echo "\033[0;32m## \033[1;34mrbenv\033[0;32m installed\033[0;37;00m"
 
 # Installs nvm
-[[ ! -d "$HOME/.nvm" ]] &&\
+export NVM_DIR="$HOME/.nvm"
+if [ ! -d "$NVM_DIR" ]; then
+  echo "\033[0;32m## Installing \033[1;34mnvm\033[0;32m\033[0;37;00m"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+fi
+echo "\033[0;32m## \033[1;34mnvm\033[0;32m installed\033[0;37;00m"
 
 # Makes shortcut to dotfiles
-for original_file in `find ${dotfiles}/dotfiles.d -maxdepth 1`; do
+for original_file in `find $dotfiles/dotfiles.d/* -maxdepth 1 | sort`; do
   file=".`basename $original_file`"
   dotfile="$HOME/$file"
 
   if [ ! -f $dotfile ]; then
-    echo "### Makes shortcut to \033[1;34m$file\033[0;37;00m.";
+    echo "### Makes link to \033[1;34m$file\033[0;37;00m.";
     ln -snfv $original_file $dotfile
   else
-    echo "### Shortcut to \033[1;34m$file\033[0;37;00m already made.";
+    echo "### Link to \033[1;34m$file\033[0;37;00m already made.";
   fi
 done
 
-#  ln -s dotfiles/bin/git-publish-branch bin/
+#  ln -snfv dotfiles/bin/git-publish-branch bin/

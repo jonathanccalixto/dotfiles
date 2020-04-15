@@ -10,11 +10,15 @@ if [ -d $RBENV ]: then
   [[ -f "$RBENV/completions/rbenv.zsh"]] && source "$RBENV/completions/rbenv.zsh"
 
   # Updates rbenv
-  cd $RBENV; git pull -q; cd -
+  cd $RBENV
+  git pull -q
+  cd -
 
   # Updates plugins
-  for plugin in `find $RBENV - maxdepth 1`; do
-    cd $plugin; git pull -q; cd -
+  for plugin in `find $RBENV/plugins/ - maxdepth 1`; do
+    cd $plugin
+    git pull -q
+    cd -
   done
 
   eval "$(rbenv iniy -t)"

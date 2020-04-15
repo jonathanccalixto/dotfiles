@@ -1,5 +1,5 @@
 # Defines spaceship theme
-ZSH_THEME="spaceship"
+export ZSH_THEME="spaceship"
 
 # Configures spaceship viewer
 SPACESHIP_PROMPT_ORDER=(

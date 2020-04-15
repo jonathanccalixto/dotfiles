@@ -1,8 +1,8 @@
 # Defines nvm path
-export NVM_DIR=$HOME/.nvm
+export NVM_DIR="$HOME/.nvm"
 
 # Imports nvm configuration
-[[ -f "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Imports nvm completions
-[[ -f "$NVM_DIR/bash_completion"]] && source "$NVM_DIR/bash_completion"
+# Imports nvm completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
