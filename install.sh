@@ -142,6 +142,13 @@ if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64 ]; then
 fi
 echo "\033[0;32m## \033[1;34mjava 8\033[0;32m installed\033[0;37;00m"
 
+# Installs graphic libs
+if [ -z `dpkg --list | grep gcc-multilib` ]; then
+  echo "\033[0;32m## Installing \033[1;34mAndroid graphic libs\033[0;37;00m"
+  sudo apt-get install -y gcc-multilib lib32z1 lib32stdc++6
+fi
+echo "\033[0;32m## \033[1;34mAndroid graphic libs\033[0;32m installed\033[0;37;00m"
+
 echo "" > $dotfiles/dotfiles.d/gitconfig
 echo "\033[0;32m## \033[1;34mgitconfig\033[0;32m made\033[0;37;00m"
 
