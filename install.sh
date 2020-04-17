@@ -135,6 +135,13 @@ if [ ! -d "$NVM_DIR" ]; then
 fi
 echo "\033[0;32m## \033[1;34mnvm\033[0;32m installed\033[0;37;00m"
 
+# Installs java
+if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64 ]; then
+  echo "\033[0;32m## Installing \033[1;34mjava 8\033[0;37;00m"
+  sudo apt-get install -y openjdk-8-jdk
+fi
+echo "\033[0;32m## \033[1;34mjava 8\033[0;32m installed\033[0;37;00m"
+
 echo "" > $dotfiles/dotfiles.d/gitconfig
 echo "\033[0;32m## \033[1;34mgitconfig\033[0;32m made\033[0;37;00m"
 
