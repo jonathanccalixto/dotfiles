@@ -166,3 +166,6 @@ for original_file in `find $dotfiles/dotfiles.d/* -maxdepth 1 | sort`; do
 done
 
 #  ln -snfv dotfiles/bin/git-publish-branch bin/
+
+# Performs zsh on finish instalation
+/bin/zsh && exit 0
