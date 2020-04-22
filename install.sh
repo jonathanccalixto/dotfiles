@@ -64,7 +64,7 @@ echo "\033[0;32m## \033[1;34mspaceship theme\033[0;32m linked on \033[1;34m$ZSH_
 bash_applied=$(grep -i "if \[ -x /bin/zsh \]; then" $HOME/.bashrc)
 if [ -z "$bash_applied" ]; then
   echo "\033[0;32m## Setting \033[1;34mzsh\033[0;32m on \033[1;34m$HOME/.bashrc\033[0;37;00m"
-  echo "\nif [ -x /bin/zsh ]; then\n  . /bin/zsh\ && exit 0\nfi" >> $HOME/.bashrc
+  echo "\nif [ -x /bin/zsh ]; then\n  /bin/zsh && exit 0\nfi" >> $HOME/.bashrc
 fi
 echo "\033[0;32m## \033[1;34mzsh\033[0;32m setted on \033[1;34m$HOME/.bashrc\033[0;37;00m"
 
