@@ -4,7 +4,7 @@ RBENV=$HOME/.rbenv
 # Imports rbenv configuration
 if [ -d $RBENV ]; then
   # Adds rbenv executables in path
-  export PATH="$RBENV/bin:$PATH"
+  export PATH="$PATH:$RBENV/bin"
   # pwd=$PWD
 
   # # Imports rbenv completions

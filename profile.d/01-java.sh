@@ -7,10 +7,12 @@
 # JAVA_SERVERS_DIR=$HOME/programs/java/servers
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH=$PATH:$JAVA_HOME/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+
 # export ANT_HOME=$JAVA_PROG_DIR/ant
 # export MVN_HOME=$JAVA_PROG_DIR/maven
 # export AWS_IAM_HOME=$JAVA_PROG_DIR/IAMCli
+# export GRADLE_HOME=$JAVA_PROG_DIR/gradle
 # export GRADLE_HOME=$JAVA_PROG_DIR/gradle
 
 # export ROO_HOME=$JAVA_PROG_DIR/spring-roo
@@ -19,18 +21,21 @@ export PATH=$PATH:$JAVA_HOME/bin
 # export GRAILS_HOME=$JAVA_PROG_DIR/grails
 # # export TOMCAT_HOME=$JAVA_SERVERS_DIR/tomcat
 
-# export PATH=$ANT_HOME/bin:$PATH
-# export PATH=$MVN_HOME/bin:$PATH
-# export PATH=$AWS_IAM_HOME/bin:$PATH
-# export PATH=$GRADLE_HOME/bin:$PATH
+export PATH=$PATH:$JAVA_HOME/bin
 
-# export PATH=$SCALA_HOME/bin:$PATH
-# export PATH=$GROOVY_HOME/bin:$PATH
-# export PATH=$GRAILS_HOME/bin:$PATH
-# export PATH=$ROO_HOME/bin:$PATH
+# export PATH=$PATH:$ANT_HOME/bin
+# export PATH=$PATH:$MVN_HOME/bin
+# export PATH=$PATH:$AWS_IAM_HOME/bin
+# export PATH=$PATH:$GRADLE_HOME/bin
 
-export ANDROID_HOME=$HOME/Android/Sdk
+# export PATH=$PATH:$SCALA_HOME/bin
+# export PATH=$PATH:$GROOVY_HOME/bin
+# export PATH=$PATH:$GRAILS_HOME/bin
+# export PATH=$PATH:$ROO_HOME/bin
+
+export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 if [ -d $HOME/Android/studio/bin ]; then
