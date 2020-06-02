@@ -1,70 +1,70 @@
-# Compiled source #
-###################
-*.com
-*.class
-.classpath
-*.dll
-*.exe
-*.o
-.project
-.settings
-*.so
+# # Compiled source #
+# ###################
+# *.com
+# *.class
+# .classpath
+# *.dll
+# *.exe
+# *.o
+# .project
+# .settings
+# *.so
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+# # Packages #
+# ############
+# # it's better to unpack these files and commit the raw source
+# # git has its own built in compression methods
+# *.7z
+# *.dmg
+# *.gz
+# *.iso
+# *.jar
+# *.rar
+# *.tar
+# *.zip
 
-# Logs and databases #
-######################
-/config/database.yml
-/coverage
-/public/coverage
-/db/schema.rb
-/db/**/*.dump
-/tmp
-#/test
-/stdout
-/log/*.log
-*.log
-*.sql
-*.sqlite
-*.sqlite3
+# # Logs and databases #
+# ######################
+# /config/database.yml
+# /coverage
+# /public/coverage
+# /db/schema.rb
+# /db/**/*.dump
+# /tmp
+# #/test
+# /stdout
+# /log/*.log
+# *.log
+# *.sql
+# *.sqlite
+# *.sqlite3
 
-# System config #
-#################
-/config/cable.yml
-/.rbenv-version
-/.rvmrc
-/.rspec
-/.ruby-version
-/.env
+# # System config #
+# #################
+# /config/cable.yml
+# /.rbenv-version
+# /.rvmrc
+# /.rspec
+# /.ruby-version
+# /.env
 
-# OS generated files #
-######################
-.DS_Store*
-NERD_tree_3
-ehthumbs.db
-Icon?
-Thumbs.db
+# # OS generated files #
+# ######################
+# .DS_Store*
+# NERD_tree_3
+# ehthumbs.db
+# Icon?
+# Thumbs.db
 
-# Temporary files #
-######################
-*.swp
-*.swo
-*sw?
-*~
-*#
+# # Temporary files #
+# ######################
+# *.swp
+# *.swo
+# *sw?
+# *~
+# *#
 
-# Others files
-###################
-# /doc/Program*cargo
-# /config/locales/*
+# # Others files
+# ###################
+# # /doc/Program*cargo
+# # /config/locales/*
