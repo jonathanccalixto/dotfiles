@@ -6,5 +6,5 @@ export EDITOR="/bin/vim"
 export MANPAGER='less -Xr'
 
 # Defines my executables
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.bin:$HOME/bin:$PATH"
 # export PATH="$HOME:$PATH"
