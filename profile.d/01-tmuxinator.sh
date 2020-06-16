@@ -1,3 +1,4 @@
 # Defines tmuxinator configuration
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] &&\
+if [ -s $HOME/.tmuxinator/scripts/tmuxinator ]; then
   source $HOME/.tmuxinator/scripts/tmuxinator
+fi
