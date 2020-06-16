@@ -4,7 +4,7 @@ RBENV=$HOME/.rbenv
 # Imports rbenv configuration
 if [ -d $RBENV ]; then
   # Adds rbenv executables in path
-  export PATH="$PATH:$RBENV/bin"
+  # export PATH="$PATH:$RBENV/bin"
   # pwd=$PWD
 
   # # Imports rbenv completions
@@ -23,5 +23,5 @@ if [ -d $RBENV ]; then
   # # returns to original path
   # cd $pwd
 
-  eval "$(rbenv init -)"
+  eval "$($RBENV/bin/rbenv init -)"
 fi
