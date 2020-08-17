@@ -7,6 +7,9 @@ profiles="$dotfiles/profile.d"
 # Makes a custom git configuration when doesn't exists
 touch "$profiles/02-git-custom.sh"
 
+# Makes a custom gpg configuration when doesn't exists
+[ -x "$(which gpg)" ] && touch "$profiles/02-gpg-custom.sh"
+
 # Imports profiles files
 for profile in `find $profiles -maxdepth 1 -name "*.zsh" | sort`; do
   source $profile;
