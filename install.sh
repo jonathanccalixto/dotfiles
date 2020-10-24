@@ -1,27 +1,59 @@
 #!/bin/bash
 
+# Defines SO type
+if  echo $HOME | grep -q '/home' ; then
+  export MY_SO=Linux
+elif  echo $HOME | grep -q '/Users' ; then
+  export MY_SO=MacOS
+elif  echo $HOME | grep -q 'C:' ; then
+  export MY_SO=Windows
+else
+  export MY_SO=Windows
+fi
+
 project="$HOME/Workspace/github/jonathanccalixto/dotfiles"
 dotfiles="$HOME/.dotfiles"
 profiles="$dotfiles/.profile.d"
 
 # Updates dependencies
-echo "\033[0;32m## Updating \033[1;34mall package\033[0;37;00m"
-sudo apt update; sudo apt upgrade -y; sudo apt dist-upgrade -y; apt autoremove -y; autoclear -y
-echo "\033[0;32m## \033[1;34mpackage\033[0;32m updated\033[0;37;00m"
-
-# Installs build-essential
-if [ -z `dpkg --list | grep build-essential` ]; then
-  echo "\033[0;32m## Installing \033[1;34mbuild-essential\033[0;37;00m"
-  sudo apt install -y build-essential
+if [ $MY_SO = 'Linux' ]; then
+  echo "\033[0;32m## Updating \033[1;34mall package\033[0;37;00m"
+  sudo apt update; sudo apt upgrade -y; sudo apt dist-upgrade -y; apt autoremove -y; autoclear -y
+  echo "\033[0;32m## \033[1;34mpackage\033[0;32m updated\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mbuild-essential\033[0;32m installed\033[0;37;00m"
+
+if [ $MY_SO = 'Linux' ]; then
+  # Installs build-essential
+  if [ -z `dpkg --list | grep build-essential` ]; then
+    echo "\033[0;32m## Installing \033[1;34mbuild-essential\033[0;37;00m"
+    sudo apt install -y build-essential
+  fi
+  echo "\033[0;32m## \033[1;34mbuild-essential\033[0;32m installed\033[0;37;00m"
+elif [ $MY_SO = 'MacOS' ]; then
+  # Installs build-essential
+  if [ ! -d "/usr/local/Cellar" ]; then
+    echo "\033[0;32m## Installing \033[1;34mhomebrew\033[0;37;00m"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    brew install wget htop
+  fi
+  echo "\033[0;32m## \033[1;34mhomebrew\033[0;32m installed\033[0;37;00m"
+fi
 
 # Installs git
-if [ -z `dpkg --list | grep git` ]; then
-  echo "\033[0;32m## Installing \033[1;34mgit\033[0;37;00m"
-  sudo apt install -y git
+if [ $MY_SO = 'Linux' ]; then
+  if [ -z `dpkg --list | grep git` ]; then
+    echo "\033[0;32m## Installing \033[1;34mgit\033[0;37;00m"
+    sudo apt install -y git
+  fi
+  echo  "\033[0;32m## \033[1;34mgit\033[0;32m installed\033[0;37;00m"
+elif [ $MY_SO = 'MacOS' ]; then
+  # Installs build-essential
+  if [ ! -x "$(which git)" ]; then
+    echo "\033[0;32m## Installing \033[1;34mgit\033[0;37;00m"
+    brew install git
+  fi
+  echo  "\033[0;32m## \033[1;34mgit\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mgit\033[0;32m installed\033[0;37;00m"
 
 # Imports project
 if [ ! -d "$project/.git" ]; then
@@ -38,19 +70,24 @@ fi
 echo "\033[0;32m## \033[1;34mdotfiles\033[0;32m linked on \033[1;34m$HOME\033[0;37;00m"
 
 # Installs zsh
-if [ ! -x "$(which zsh)" ]; then
-  echo "\033[0;32m## Installing \033[1;34mzsh\033[0;37;00m"
-  sudo apt install -y zsh
+if [ $MY_SO = 'Linux' ]; then
+  if [ ! -x "$(which zsh)" ]; then
+    echo "\033[0;32m## Installing \033[1;34mzsh\033[0;37;00m"
+    sudo apt install -y zsh
+  fi
+  echo "\033[0;32m## \033[1;34mzsh\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mzsh\033[0;32m installed\033[0;37;00m"
+
 
 # Installs oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  if [ ! -x "$(which curl)" ]; then
-    echo "\033[0;32m#### Installing \033[1;34mcurl\033[0;37;00m"
-    sudo apt install -y curl
+  if [ $MY_SO = 'Linux' ]; then
+    if [ ! -x "$(which curl)" ]; then
+      echo "\033[0;32m#### Installing \033[1;34mcurl\033[0;37;00m"
+      sudo apt install -y curl
+    fi
+    echo "\033[0;32m#### \033[1;34mcurl\033[0;32m installed\033[0;37;00m"
   fi
-  echo "\033[0;32m#### \033[1;34mcurl\033[0;32m installed\033[0;37;00m"
 
   echo "\033[0;32m## Installing \033[1;34m.oh-my-zsh\033[0;37;00m"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -140,14 +177,21 @@ fi
 echo "\033[0;32m## \033[1;34mrbenv\033[0;32m installed\033[0;37;00m"
 
 # Installs ruby dependencies
-if [ -z `dpkg --list | grep libssl-dev` ]; then
-  echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
-  sudo apt install -y zlib1g-dev libssl-dev libreadline-dev libffi-dev\
-                      libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev\
-                      software-properties-common
+if [ $MY_SO = 'Linux' ]; then
+  if [ -z `dpkg --list | grep libssl-dev` ]; then
+    echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
+    sudo apt install -y zlib1g-dev libssl-dev libreadline-dev libffi-dev\
+                        libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev\
+                        software-properties-common
+  fi
+  echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
+elif [ $MY_SO = 'MacOS' ]; then
+  if [ -z `brew list | grep libxml2` ]; then
+    echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
+    brew install coreutils libxml2 qt
+  fi
+  echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
-
 # Installs nvm
 export NVM_DIR="$HOME/.nvm"
 if [ ! -d "$NVM_DIR" ]; then
@@ -157,84 +201,99 @@ fi
 echo "\033[0;32m## \033[1;34mnvm\033[0;32m installed\033[0;37;00m"
 
 # Installs docker
-if [ ! -x `which docker` ]; then
-  # Donwloads project
-  echo "\033[0;32m## Installing \033[1;34mdocker dependecies\033[0;37;00m"
-  sudo apt install -y apt-transport-https  ca-certificates\
-                      curl  gnupg-agent  software-properties-common
-  echo "\033[0;32m## \033[1;34mdocker dependencies\033[0;32m installed\033[0;37;00m"
+if [ $MY_SO = 'Linux' ]; then
+  if [ ! -x `which docker` ]; then
+    # Donwloads project
+    echo "\033[0;32m## Installing \033[1;34mdocker dependecies\033[0;37;00m"
+    sudo apt install -y apt-transport-https  ca-certificates\
+                        curl  gnupg-agent  software-properties-common
+    echo "\033[0;32m## \033[1;34mdocker dependencies\033[0;32m installed\033[0;37;00m"
 
-  echo "\033[0;32m## Adding \033[1;34mdocker gpg key\033[0;37;00m"
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -f -
-  sudo apt-key fingerprint 0EBFCD88
-  echo "\033[0;32m## \033[1;34mdocker gpg key\033[0;32m added\033[0;37;00m"
+    echo "\033[0;32m## Adding \033[1;34mdocker gpg key\033[0;37;00m"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -f -
+    sudo apt-key fingerprint 0EBFCD88
+    echo "\033[0;32m## \033[1;34mdocker gpg key\033[0;32m added\033[0;37;00m"
 
-  echo "\033[0;32m## Adding \033[1;34mdocker respository\033[0;37;00m"
-  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  echo "\033[0;32m## \033[1;34mdocker respository\033[0;32m added\033[0;37;00m"
+    echo "\033[0;32m## Adding \033[1;34mdocker respository\033[0;37;00m"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    echo "\033[0;32m## \033[1;34mdocker respository\033[0;32m added\033[0;37;00m"
 
-  echo "\033[0;32m## Installing \033[1;34mdocker\033[0;37;00m"
-  sudo apt update
-  sudo apt install -y docker-ce docker-ce-cli containerd.io
+    echo "\033[0;32m## Installing \033[1;34mdocker\033[0;37;00m"
+    sudo apt update
+    sudo apt install -y docker-ce docker-ce-cli containerd.io
+    echo "\033[0;32m## \033[1;34mdocker\033[0;32m installed\033[0;37;00m"
+
+    echo "\033[0;32m## Configuring \033[1;34mdocker user\033[0;37;00m"
+    sudo usermod -aG docker $USER
+    echo "\033[0;32m## \033[1;34mdocker user\033[0;32m configured\033[0;37;00m"
+  fi
   echo "\033[0;32m## \033[1;34mdocker\033[0;32m installed\033[0;37;00m"
 
-  echo "\033[0;32m## Configuring \033[1;34mdocker user\033[0;37;00m"
-  sudo usermod -aG docker $USER
-  echo "\033[0;32m## \033[1;34mdocker user\033[0;32m configured\033[0;37;00m"
+  # Installs docker-compose
+  echo "\033[0;32m## Installing \033[1;34mdocker-compose\033[0;37;00m"
+  if [ ! -x `which docker` ]; then
+    echo "\033[0;32m## Downloading \033[1;34mdocker-compose\033[0;37;00m"
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m downloaded\033[0;37;00m"
+
+    echo "\033[0;32m## Configuring permission for \033[1;34mdocker-compose\033[0;37;00m"
+    sudo chmod +x /usr/local/bin/docker-compose
+    echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m persmissions configured\033[0;37;00m"
+
+    echo "\033[0;32m## Linking \033[1;34mdocker-compose\033[0;37;00m"
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m linked\033[0;37;00m"
+  fi
+  echo "\033[0;32m## \033[1;34mdocker\033[0;32m installed\033[0;37;00m"
+
+  # Installs docker-machine
+  echo "\033[0;32m## Installing \033[1;34mdocker-machine\033[0;37;00m"
+  if [ ! -x `which docker` ]; then
+    echo "\033[0;32m## Making \033[1;34mdocker-machine\033[0;32m base variable\033[0;37;00m"
+    base=https://github.com/docker/machine/releases/download/v0.16.0
+    echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m variable made\033[0;37;00m"
+
+    echo "\033[0;32m## Downloading \033[1;34mdocker-machine\033[0;37;00m"
+    sudo curl -L "$base/docker-machine-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-machine
+    echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m downloaded\033[0;37;00m"
+
+    echo "\033[0;32m## Configuring permission for \033[1;34mdocker-machine\033[0;37;00m"
+    sudo chmod +x /usr/local/bin/docker-machine
+    echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m persmissions configured\033[0;37;00m"
+
+    echo "\033[0;32m## Linking \033[1;34mdocker-machine\033[0;37;00m"
+    sudo ln -s /usr/local/bin/docker-machine /usr/bin/docker-machine
+    echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m linked\033[0;37;00m"
+  fi
+  echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mdocker\033[0;32m installed\033[0;37;00m"
 
-# Installs docker-compose
-echo "\033[0;32m## Installing \033[1;34mdocker-compose\033[0;37;00m"
-if [ ! -x `which docker` ]; then
-  echo "\033[0;32m## Downloading \033[1;34mdocker-compose\033[0;37;00m"
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m downloaded\033[0;37;00m"
-
-  echo "\033[0;32m## Configuring permission for \033[1;34mdocker-compose\033[0;37;00m"
-  sudo chmod +x /usr/local/bin/docker-compose
-  echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m persmissions configured\033[0;37;00m"
-
-  echo "\033[0;32m## Linking \033[1;34mdocker-compose\033[0;37;00m"
-  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-  echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m linked\033[0;37;00m"
+# Installs gpg
+if [ $MY_SO = "MacOS" ]; then
+  if [ -z `brew list | grep gpg` ]; then
+  echo "\033[0;32m## Installing \033[1;34mGPG\033[0;37;00m"
+    brew install gpg2 gnupg pinentry-mac
+  fi
+  echo "\033[0;32m## \033[1;34mGPG\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mdocker\033[0;32m installed\033[0;37;00m"
-
-# Installs docker-machine
-echo "\033[0;32m## Installing \033[1;34mdocker-machine\033[0;37;00m"
-if [ ! -x `which docker` ]; then
-  echo "\033[0;32m## Making \033[1;34mdocker-machine\033[0;32m base variable\033[0;37;00m"
-  base=https://github.com/docker/machine/releases/download/v0.16.0
-  echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m variable made\033[0;37;00m"
-
-  echo "\033[0;32m## Downloading \033[1;34mdocker-machine\033[0;37;00m"
-  sudo curl -L "$base/docker-machine-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-machine
-  echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m downloaded\033[0;37;00m"
-
-  echo "\033[0;32m## Configuring permission for \033[1;34mdocker-machine\033[0;37;00m"
-  sudo chmod +x /usr/local/bin/docker-machine
-  echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m persmissions configured\033[0;37;00m"
-
-  echo "\033[0;32m## Linking \033[1;34mdocker-machine\033[0;37;00m"
-  sudo ln -s /usr/local/bin/docker-machine /usr/bin/docker-machine
-  echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m linked\033[0;37;00m"
-fi
-echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m installed\033[0;37;00m"
 
 # Installs java
-if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64 ]; then
-  echo "\033[0;32m## Installing \033[1;34mjava 8\033[0;37;00m"
-  sudo apt install -y openjdk-8-jdk
+if [ $MY_SO = 'Linux' ]; then
+  if [ ! -d /usr/lib/jvm/java-8-openjdk-amd64 ]; then
+    echo "\033[0;32m## Installing \033[1;34mjava 8\033[0;37;00m"
+    sudo apt install -y openjdk-8-jdk
+  fi
+  echo "\033[0;32m## \033[1;34mjava 8\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mjava 8\033[0;32m installed\033[0;37;00m"
 
 # Installs graphic libs
-if [ -z `dpkg --list | grep gcc-multilib` ]; then
-  echo "\033[0;32m## Installing \033[1;34mAndroid graphic libs\033[0;37;00m"
-  sudo apt install -y gcc-multilib lib32z1 lib32stdc++6
+if [ $MY_SO = 'Linux' ]; then
+  if [ -z `dpkg --list | grep gcc-multilib` ]; then
+    echo "\033[0;32m## Installing \033[1;34mAndroid graphic libs\033[0;37;00m"
+    sudo apt install -y gcc-multilib lib32z1 lib32stdc++6
+  fi
+  echo "\033[0;32m## \033[1;34mAndroid graphic libs\033[0;32m installed\033[0;37;00m"
 fi
-echo "\033[0;32m## \033[1;34mAndroid graphic libs\033[0;32m installed\033[0;37;00m"
 
 echo "" > $dotfiles/dotfiles.d/gitconfig
 echo "\033[0;32m## \033[1;34mgitconfig\033[0;32m made\033[0;37;00m"
