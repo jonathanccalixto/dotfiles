@@ -6,7 +6,7 @@
 # JAVA_PROG_DIR=$HOME/programs/java/programs
 # JAVA_SERVERS_DIR=$HOME/programs/java/servers
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Android/Sdk
 
 # export ANT_HOME=$JAVA_PROG_DIR/ant
