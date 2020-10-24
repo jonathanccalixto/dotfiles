@@ -7,10 +7,10 @@ if [ -d $RBENV ]; then
   # export PATH="$PATH:$RBENV/bin"
   # pwd=$PWD
 
-  # # Imports rbenv completions
-  # if [ -f "$RBENV/completions/rbenv.zsh" ]; then
-  #   source "$RBENV/completions/rbenv.zsh"
-  # fi
+  # Imports rbenv completions
+  if [ -f "$RBENV/completions/rbenv.zsh" ]; then
+    source "$RBENV/completions/rbenv.zsh"
+  fi
 
   # # Updates rbenv
   # cd $RBENV && git pull -q
