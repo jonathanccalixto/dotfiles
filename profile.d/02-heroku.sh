@@ -12,19 +12,19 @@ if [ -x "$(which heroku)" ]; then
     [[ $1 = '-Production' ]] && rm "$HOME/.heroku-production"
     [[ $1 = 'Default' ]] && rm "$HOME/.heroku-*"
 
-    sed -i -e 's/Brave (rainglow)/Friction (rainglow)/g' $vscode_settings
-    sed -i -e 's/Brave Light (rainglow)/Friction Light (rainglow)/g' $vscode_settings
-    sed -i -e 's/Banner (rainglow)/Friction (rainglow)/g' $vscode_settings
-    sed -i -e 's/Banner Light (rainglow)/Friction Light (rainglow)/g' $vscode_settings
+    sed -i -e 's/Brave (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e 's/Brave Light (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e 's/Banner (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e 's/Banner Light (rainglow)/GitHub Plus/g' $vscode_settings
 
     if [[ -f "$HOME/.heroku-production" ]]; then
-      sed -i -e 's/Friction (rainglow)/Brave (rainglow)/g' $vscode_settings
-      sed -i -e 's/Friction Light (rainglow)/Brave Light (rainglow)/g' $vscode_settings
+      sed -i -e 's/Dracula Soft/Brave (rainglow)/g' $vscode_settings
+      sed -i -e 's/GitHub Plus/Brave Light (rainglow)/g' $vscode_settings
     fi
 
     if [[ -f "$HOME/.heroku-staging" ]]; then
-      sed -i -e 's/Friction (rainglow)/Banner (rainglow)/g' $vscode_settings
-      sed -i -e 's/Friction Light (rainglow)/Banner Light (rainglow)/g' $vscode_settings
+      sed -i -e 's/Dracula Soft/Banner (rainglow)/g' $vscode_settings
+      sed -i -e 's/GitHub Plus/Banner Light (rainglow)/g' $vscode_settings
     fi
   }
 
