@@ -33,6 +33,7 @@ alias bx="bundle exec"
 alias bo="bundle open"
 alias br="bundle exec rails"
 alias bs="bundle exec rspec"
+alias bsd="bundle exec rspec --format documentation"
 alias rk="bundle exec rake"
 alias bw="bundle show"
 
@@ -58,3 +59,6 @@ alias dcr="docker-compose run"
 # vpn
 alias hpn="sudo openvpn --config ~/.vpnconfig/hmg.ovpn"
 alias ppn="sudo openvpn --config ~/.vpnconfig/prod.ovpn"
+
+# yarn
+alias yarn-reinstall="rm -rf node_modules ios/Pods; yarn install; cd ios; pod install; cd .."
