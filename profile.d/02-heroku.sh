@@ -1,6 +1,8 @@
 if [ -x "$(which heroku)" ]; then
   alias hpc="hp run console"
   alias hsc="hs run console"
+  alias hpdb="hp run rails dbconsole -p"
+  alias hsdb="hs run rails dbconsole -p"
 
   set-profile() {
     echo -e "\033]50;SetProfile=$1\a"
