@@ -6,7 +6,7 @@
 # JAVA_PROG_DIR=$HOME/programs/java/programs
 # JAVA_SERVERS_DIR=$HOME/programs/java/servers
 
-if [[ $MY_SO = 'Linux' ]]; then
+if [[ $MY_SO = 'MacOS' ]]; then
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
 elif [[ $MY_SO = 'Linux' ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
