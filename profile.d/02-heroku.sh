@@ -1,44 +1,120 @@
 if [ -x "$(which heroku)" ]; then
-  alias hpc="hp run console"
   alias hsc="hs run console"
-  alias hpdb="hp run rails dbconsole -p"
   alias hsdb="hs run rails dbconsole -p"
+
+  alias hhc="hh run console"
+  alias hhdb="hh run rails dbconsole -p"
+
+  alias hpc="hp run console"
+  alias hpdb="hp run rails dbconsole -p"
 
   set-profile() {
     echo -e "\033]50;SetProfile=$1\a"
     vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
 
-    [[ $1 = '+Staging' ]] && touch "$HOME/.heroku-staging"
-    [[ $1 = '-Staging' ]] && rm "$HOME/.heroku-staging"
-    [[ $1 = '+Production' ]] && touch "$HOME/.heroku-production"
-    [[ $1 = '-Production' ]] && rm "$HOME/.heroku-production"
-    [[ $1 = 'Default' ]] && rm "$HOME/.heroku-*"
+    [[ $1 = 'Default' ]] && rm -f $HOME/.heroku-* | ''
 
+    [[ $1 = '+Production' ]] && touch "$HOME/.heroku-production"
+    [[ $1 = '-Production' ]] && rm -f "$HOME/.heroku-production"
+
+    [[ $1 = '+Homolog' ]] && touch "$HOME/.heroku-homolog"
+    [[ $1 = '-Homolog' ]] && rm -f "$HOME/.heroku-homolog"
+
+    [[ $1 = '+Sandbox' ]] && touch "$HOME/.heroku-sandbox"
+    [[ $1 = '-Sandbox' ]] && rm -f "$HOME/.heroku-sandbox"
+
+    # Clear production Theme
     sed -i -e 's/Brave (rainglow)/Dracula Soft/g' $vscode_settings
     sed -i -e 's/Brave Light (rainglow)/GitHub Plus/g' $vscode_settings
+
+    # Clear homolog Theme
     sed -i -e 's/Banner (rainglow)/Dracula Soft/g' $vscode_settings
     sed -i -e 's/Banner Light (rainglow)/GitHub Plus/g' $vscode_settings
+
+    # Clear sandbox Theme
+    sed -i -e 's/Absent (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e 's/Absent Light (rainglow)/GitHub Plus/g' $vscode_settings
 
     if [[ -f "$HOME/.heroku-production" ]]; then
       sed -i -e 's/Dracula Soft/Brave (rainglow)/g' $vscode_settings
       sed -i -e 's/GitHub Plus/Brave Light (rainglow)/g' $vscode_settings
     fi
 
-    if [[ -f "$HOME/.heroku-staging" ]]; then
+    if [[ -f "$HOME/.heroku-homolog" ]]; then
+      sed -i -e 's/Dracula Soft/Absent (rainglow)/g' $vscode_settings
+      sed -i -e 's/GitHub Plus/Absent Light (rainglow)/g' $vscode_settings
+    fi
+
+    if [[ -f "$HOME/.heroku-sandbox" ]]; then
       sed -i -e 's/Dracula Soft/Banner (rainglow)/g' $vscode_settings
       sed -i -e 's/GitHub Plus/Banner Light (rainglow)/g' $vscode_settings
     fi
   }
 
+  clear-theme() {
+    set-profile Default
+  }
+
+  dark-theme() {
+    vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
+
+    # default theme
+    sed -i -e 's/GitHub Plus/Dracula Soft/g' $vscode_settings
+
+    # production Theme
+    sed -i -e 's/Brave Light (rainglow)/Dracula Soft/g' $vscode_settings
+
+    # homolog Theme
+    sed -i -e 's/Banner Light (rainglow)/Dracula Soft/g' $vscode_settings
+
+    # sandbox Theme
+    sed -i -e 's/Absent Light (rainglow)/Dracula Soft/g' $vscode_settings
+
+    set-profile Dark-Theme
+  }
+
+  light-theme() {
+    vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
+
+    # default theme
+    sed -i -e 's/Dracula Soft/GitHub Plus/g' $vscode_settings
+
+    # production Theme
+    sed -i -e 's/Brave (rainglow)/GitHub Plus/g' $vscode_settings
+
+    # homolog Theme
+    sed -i -e 's/Banner (rainglow)/GitHub Plus/g' $vscode_settings
+
+    # sandbox Theme
+    sed -i -e 's/Absent (rainglow)/GitHub Plus/g' $vscode_settings
+
+    set-profile Light-Theme
+  }
+
   hs() {
     cmd=$1
     shift
-    set-profile +Staging; echo 'staging: environment'; heroku $cmd -r staging $*; set-profile -Staging
+    set-profile +Sandbox
+    echo 'sandbox: environment'
+    heroku $cmd -r sandbox $*
+    set-profile -Sandbox
+  }
+
+  hh() {
+    cmd=$1
+    shift
+    set-profile +Homolog
+    echo 'homolog: environment'
+    heroku $cmd -r homolog $*
+    set-profile -Homolog
   }
 
   hp() {
     cmd=$1
     shift
-    set-profile +Production; echo 'production: environment'; heroku $cmd -r production $*; set-profile -Production
+    set-profile +Production
+    echo 'production: environment'
+    heroku $cmd -r production $*
+    set-profile -Production
   }
 fi
