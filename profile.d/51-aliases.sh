@@ -32,10 +32,14 @@ alias bu="bundle update"
 alias bx="bundle exec"
 alias bo="bundle open"
 alias br="bundle exec rails"
-alias bs="bundle exec rspec"
-alias bsd="bundle exec rspec --format documentation"
 alias rk="bundle exec rake"
 alias bw="bundle show"
+
+bs() {
+  bundle exec rspec $*
+  [ $MY_SO = 'MacOS' ] && say 'Tests perfomed'
+}
+alias bsd="bs --format documentation"
 
 #servers start
 alias postgresql_start="postgres -D /usr/local/var/postgres"
