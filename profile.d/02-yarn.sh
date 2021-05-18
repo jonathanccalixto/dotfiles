@@ -1,5 +1,7 @@
-if [[ $MY_SO = 'MacOS' ] && [ -x "$(which node)" ]]; then
-  [[ ! -f "/usr/local/bin/node" ]] && sh -c "ln -sf $(eval which node) /usr/local/bin/node" # linking node to xcode
+if [[ $MY_SO -eq 'MacOS' ]]; then
+  if [[ -x "$(which node)" ]]; then
+    [[ ! -f "/usr/local/bin/node" ]] && sh -c "ln -sf $(eval which node) /usr/local/bin/node" # linking node to xcode
+  fi
 fi
 
 if [ -x "$(which npm)" ]; then
