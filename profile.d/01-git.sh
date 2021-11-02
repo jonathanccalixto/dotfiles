@@ -37,5 +37,7 @@ git config --global push.default current
 # git config --global commit.gpgSign true
 # git config --global gpg.program gpg
 
+# git config --global pull.rebase true
+
 # git config --global alias.ci 'commit -S'
 # git config --global alias.amend "commit -S --amend"
