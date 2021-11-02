@@ -32,7 +32,10 @@ git config --global push.default current
 
 # git config --global user.name "Your Name Comes Here"
 # git config --global user.email you@yourdomain.example.com
+
 # git config --global user.signingkey "<GPG pub code>"
+# git config --global commit.gpgSign true
+# git config --global gpg.program gpg
 
 # git config --global alias.ci 'commit -S'
 # git config --global alias.amend "commit -S --amend"
