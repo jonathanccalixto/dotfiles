@@ -15,6 +15,8 @@ git config --global alias.lgaf "log --decorate --color --graph --pretty=format:'
 git config --global alias.lgap "log --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -p"
 git config --global alias.mg merge
 
+git config --global init.defaultBranch master
+
 git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.interactive auto
