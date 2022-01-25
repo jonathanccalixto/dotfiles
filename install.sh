@@ -233,7 +233,7 @@ if [ $MY_SO = 'Linux' ]; then
   echo "\033[0;32m## Installing \033[1;34mdocker-compose\033[0;37;00m"
   if [ ! -x `which docker` ]; then
     echo "\033[0;32m## Downloading \033[1;34mdocker-compose\033[0;37;00m"
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     echo "\033[0;32m## \033[1;34mdocker-compose\033[0;32m downloaded\033[0;37;00m"
 
     echo "\033[0;32m## Configuring permission for \033[1;34mdocker-compose\033[0;37;00m"
@@ -250,7 +250,7 @@ if [ $MY_SO = 'Linux' ]; then
   echo "\033[0;32m## Installing \033[1;34mdocker-machine\033[0;37;00m"
   if [ ! -x `which docker` ]; then
     echo "\033[0;32m## Making \033[1;34mdocker-machine\033[0;32m base variable\033[0;37;00m"
-    base=https://github.com/docker/machine/releases/download/v0.16.0
+    base=https://github.com/docker/machine/releases/download/v0.16.2
     echo "\033[0;32m## \033[1;34mdocker-machine\033[0;32m variable made\033[0;37;00m"
 
     echo "\033[0;32m## Downloading \033[1;34mdocker-machine\033[0;37;00m"
