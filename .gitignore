@@ -15,6 +15,6 @@ tmtags
 *.swo
 
 # Customs
-profile.d/02-git-custom.sh
 dotfiles.d/gitconfig
+profile.d/02-git-custom.sh
 profile.d/02-gpg-custom.sh
