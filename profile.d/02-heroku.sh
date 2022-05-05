@@ -9,7 +9,7 @@ if [ -x "$(which heroku)" ]; then
   alias hpdb="hp run rails dbconsole -p"
 
   set-profile() {
-    echo -e "\033]50;SetProfile=$1\a"
+    echo -e "\033]50;SetProfile=Default\a"
     vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
 
     [[ $1 = 'Default' ]] && rm -f $HOME/.heroku-* | ''
@@ -38,16 +38,19 @@ if [ -x "$(which heroku)" ]; then
     if [[ -f "$HOME/.heroku-production" ]]; then
       sed -i -e 's/Dracula Soft/Brave (rainglow)/g' $vscode_settings
       sed -i -e 's/GitHub Plus/Brave Light (rainglow)/g' $vscode_settings
+      echo -e "\033]50;SetProfile=Production\a"
     fi
 
     if [[ -f "$HOME/.heroku-homolog" ]]; then
       sed -i -e 's/Dracula Soft/Absent (rainglow)/g' $vscode_settings
       sed -i -e 's/GitHub Plus/Absent Light (rainglow)/g' $vscode_settings
+      echo -e "\033]50;SetProfile=Homolog\a"
     fi
 
     if [[ -f "$HOME/.heroku-sandbox" ]]; then
       sed -i -e 's/Dracula Soft/Banner (rainglow)/g' $vscode_settings
       sed -i -e 's/GitHub Plus/Banner Light (rainglow)/g' $vscode_settings
+      echo -e "\033]50;SetProfile=Sandbox\a"
     fi
   }
 
