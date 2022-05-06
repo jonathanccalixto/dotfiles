@@ -41,6 +41,11 @@ bs() {
 }
 alias bsd="bs --format documentation"
 
+bp() {
+  bundle exec parallel_rspec $*
+  [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
+}
+
 #servers start
 alias postgresql_start="postgres -D /usr/local/var/postgres"
 alias redis_start="redis-server /usr/local/etc/redis.conf"
