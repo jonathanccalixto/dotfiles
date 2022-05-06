@@ -37,7 +37,7 @@ alias bw="bundle show"
 
 bs() {
   bundle exec rspec $*
-  [ $MY_SO = 'MacOS' ] && say 'Tests perfomed'
+  [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
 }
 alias bsd="bs --format documentation"
 
