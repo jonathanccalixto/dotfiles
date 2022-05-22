@@ -41,7 +41,7 @@ bs() {
 }
 alias bsd="bs --format documentation"
 
-bp() {
+bps() {
   bundle exec parallel_rspec $*
   [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
 }
