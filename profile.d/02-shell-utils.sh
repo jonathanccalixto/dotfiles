@@ -3,5 +3,5 @@ super-kill() {
 }
 
 get-ip() {
-  ipconfig | grep -i 'inet '
+  ifconfig | grep -i 'inet '
 }
