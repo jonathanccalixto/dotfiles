@@ -120,7 +120,7 @@ echo "\033[0;32m## \033[1;34mzsh\033[0;32m setted on \033[1;34m$HOME/.bashrc\033
 # Installs zinit (old zplugin)
 if [ ! -d "$HOME/.zinit/bin" ]; then
   echo "\033[0;32m## Importing \033[1;34mZinit\033[0;32m project\033[0;37;00m"
-  git clone https://github.com/zdharma/zinit.git $HOME/.zinit/bin
+  git clone https://github.com/zdharma-continuum/zinit.git $HOME/.zinit/bin
 fi
 echo "\033[0;32m## \033[1;34mZinit\033[0;32m imported\033[0;37;00m"
 
