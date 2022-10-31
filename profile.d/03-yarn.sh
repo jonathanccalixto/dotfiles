@@ -5,7 +5,7 @@ if [[ $MY_SO -eq 'MacOS' ]]; then
 fi
 
 if [ -x "$(which npm)" ]; then
-  [[ ! -x "$(which yarn)" ]] && sh -c "npm install yarn -g; clear" # Installs yarn
+  [[ ! -x "$(which yarn)" ]] && sh -c "npm install --location=global yarn; clear" # Installs yarn
   # export PATH="$(yarn global bin):$PATH" # Adds yarn global to $PATH
-  export PATH="$(npm -g bin):$PATH" # Adds npm global to $PATH
+  export PATH="$(npm --location=global bin):$PATH" # Adds npm global to $PATH
 fi
