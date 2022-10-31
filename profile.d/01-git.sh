@@ -1,7 +1,7 @@
 # clear olds configurations
 echo "" > "$HOME/.gitconfig"
 
-git config --global alias.unstage 'reset HEAD'
+git config --global alias.unstage 'reset'
 git config --global alias.st status
 git config --global alias.ci 'commit'
 git config --global alias.amend "commit --amend"
