@@ -62,7 +62,10 @@ alias quit exit
 
 begin
   require "pry"
+
+  Pry.config.history_file = "#{ENV['HOME']}/.irb_history"
   Pry.start
+
   exit
 rescue LoadError => e
   warn "Unable to load PRY"
