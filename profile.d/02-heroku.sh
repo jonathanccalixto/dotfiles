@@ -5,6 +5,9 @@ if [ -x "$(which heroku)" ]; then
   alias hhc="hh run console"
   alias hhdb="hh run rails dbconsole -p"
 
+  alias hh2c="hh2 run console"
+  alias hh2db="hh2 run rails dbconsole -p"
+
   alias hpc="hp run console"
   alias hpdb="hp run rails dbconsole -p"
 
@@ -110,6 +113,15 @@ if [ -x "$(which heroku)" ]; then
     echo 'homolog: environment'
     heroku $cmd -r homolog $*
     set-profile -Homolog
+  }
+
+  hh2() {
+    cmd=$1
+    shift
+    set-profile +Homolog2
+    echo 'homolog2: environment'
+    heroku $cmd -r homolog2 $*
+    set-profile -Homolog2
   }
 
   hp() {
