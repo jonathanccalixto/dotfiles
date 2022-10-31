@@ -45,6 +45,7 @@ bps() {
   bundle exec parallel_rspec $*
   [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
 }
+alias bpsd="bps -- -f documentation --"
 
 #servers start
 alias postgresql_start="postgres -D /usr/local/var/postgres"
