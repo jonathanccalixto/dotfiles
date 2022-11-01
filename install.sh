@@ -189,7 +189,7 @@ if [ $MY_SO = 'Linux' ]; then
 elif [ $MY_SO = 'MacOS' ]; then
   if [ -z `brew list | grep libxml2` ]; then
     echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
-    brew install coreutils libxml2 qt
+    brew install coreutils libxml2 qt readline
   fi
   echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
 fi
