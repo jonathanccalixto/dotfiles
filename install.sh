@@ -171,6 +171,41 @@ if [ ! -d $RBENV ]; then
 fi
 echo "\033[0;32m## \033[1;34mrbenv\033[0;32m installed\033[0;37;00m"
 
+# Installs pyenv
+PYENV="$HOME/.pyenv"
+if [ ! -d $PYENV ]; then
+  # Donwloads project
+  echo "\033[0;32m## Importing \033[1;py\033[0;32m project\033[0;37;00m"
+  git clone https://github.com/pyenv/pyenv.git $PYENV
+  echo "\033[0;32m## \033[1;34mpyenv\033[0;32m imported\033[0;37;00m"
+
+  # Tries to compile dynamic bash extension to speed up pyenv.
+  echo "\033[0;32m## Configuring \033[1;34mpyenv\033[0;32m\033[0;37;00m"
+  cd $PYENV && src/configure && make -C src && cd -
+  echo "\033[0;32m## \033[1;34mpyenv\033[0;32m configured\033[0;37;00m"
+
+  # Defines plugin path
+  PPLUGINS="$PYENV/plugins"
+
+  # Adds rbenvs's plugins
+  if [ ! -d $PPLUGINS ]; then
+    mkdir -p $PPLUGINS
+  fi
+
+  if [ -d "$PPLUGINS/python-build" ]; then
+  echo "\033[0;32m## Importing \033[1;34mpython-build\033[0;32m project\033[0;37;00m"
+    ./install.sh
+  fi
+  echo "\033[0;32m## \033[1;34mpython-build\033[0;32m imported\033[0;37;00m"
+
+  # Verifies that pyenv is properly set up using this pyenv-doctor script
+  echo "\033[0;32m## Checking \033[1;34mpyenv\033[0;32m status\033[0;37;00m"
+  git clone https://github.com/pyenv/pyenv-doctor.git "$PPLUGINS/pyenv-doctor"
+  pyenv doctor
+  echo "\033[0;32m## \033[1;34mpyenv\033[0;32m cheked\033[0;37;00m"
+fi
+echo "\033[0;32m## \033[1;34mpyenv\033[0;32m installed\033[0;37;00m"
+
 # Installs ruby and python dependencies
 if [ $MY_SO = 'Linux' ]; then
   if [ -z `dpkg --list | grep libxml2-dev` ]; then
