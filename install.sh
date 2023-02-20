@@ -164,12 +164,6 @@ if [ ! -d $RBENV ]; then
   fi
   echo "\033[0;32m## \033[1;34mruby-build\033[0;32m imported\033[0;37;00m"
 
-  # if [ ! -d "$RPLUGINS/default-gems" ]; then
-  # echo "\033[0;32m## Importing \033[1;34mdefault-gems\033[0;32m project\033[0;37;00m"
-  #   git clone https://github.com/rbenv/default-gems.git "$RPLUGINS/default-gems"
-  # fi
-  # echo "\033[0;32m## \033[1;34mdefault-gems\033[0;32m imported\033[0;37;00m"
-
   # Verifies that rbenv is properly set up using this rbenv-doctor script
   echo "\033[0;32m## Checking \033[1;34mrbenv\033[0;32m status\033[0;37;00m"
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
