@@ -187,7 +187,7 @@ if [ ! -d $PYENV ]; then
   # Defines plugin path
   PPLUGINS="$PYENV/plugins"
 
-  # Adds rbenvs's plugins
+  # Adds pyenvs's plugins
   if [ ! -d $PPLUGINS ]; then
     mkdir -p $PPLUGINS
   fi
@@ -210,16 +210,17 @@ echo "\033[0;32m## \033[1;34mpyenv\033[0;32m installed\033[0;37;00m"
 if [ $MY_SO = 'Linux' ]; then
   if [ -z `dpkg --list | grep libxml2-dev` ]; then
     echo "\033[0;32m## Installing \033[1;34mruby and python dependencies\033[0;37;00m"
-    sudo apt install -y zlib1g-dev libssl-dev libreadline-dev libffi-dev libbz2-dev\
-                        libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev\
-                        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev\
-                        liblzma-dev libsqlite3-dev software-properties-common
+    sudo apt install -y libbz2-dev libcurl4-openssl-dev libffi-dev liblzma-dev \
+                        libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
+                        libxml2-dev libxml2-dev libxmlsec1-dev libxslt1-dev \
+                        libyaml-dev software-properties-common tk-dev xz-utils \
+                        zlib1g-dev
   fi
   echo "\033[0;32m## \033[1;34mruby and python dependencies\033[0;32m installed\033[0;37;00m"
 elif [ $MY_SO = 'MacOS' ]; then
   if [ -z `brew list | grep libxml2` ]; then
     echo "\033[0;32m## Installing \033[1;34mruby and python dependencies\033[0;37;00m"
-    brew install coreutils libxml2 qt readline openssl sqlite3 xz zlib tcl-tk
+    brew install coreutils libxml2 libyaml openssl qt readline sqlite3 tcl-tk xz zlib
   fi
   echo "\033[0;32m## \033[1;34mruby and python dependencies\033[0;32m installed\033[0;37;00m"
 fi
