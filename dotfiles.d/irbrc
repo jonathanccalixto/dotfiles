@@ -45,9 +45,6 @@ def cd(dir)
   pwd
 end
 
-alias p pp
-alias quit exit
-
 begin
   require "pry"
 
