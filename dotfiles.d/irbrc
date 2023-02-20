@@ -36,13 +36,13 @@ def ls
    %x{ls}.split("\n")
 end
 
-def cd(dir)
-  Dir.chdir(dir)
+def pwd
   Dir.pwd
 end
 
-def pwd
-  Dir.pwd
+def cd(dir)
+  Dir.chdir(dir)
+  pwd
 end
 
 # also from http://themomorohoax.com/2009/03/27/irb-tip-load-files-faster
