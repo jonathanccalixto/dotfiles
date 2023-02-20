@@ -171,22 +171,24 @@ if [ ! -d $RBENV ]; then
 fi
 echo "\033[0;32m## \033[1;34mrbenv\033[0;32m installed\033[0;37;00m"
 
-# Installs ruby dependencies
+# Installs ruby and python dependencies
 if [ $MY_SO = 'Linux' ]; then
-  if [ -z `dpkg --list | grep libssl-dev` ]; then
-    echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
-    sudo apt install -y zlib1g-dev libssl-dev libreadline-dev libffi-dev\
+  if [ -z `dpkg --list | grep libxml2-dev` ]; then
+    echo "\033[0;32m## Installing \033[1;34mruby and python dependencies\033[0;37;00m"
+    sudo apt install -y zlib1g-dev libssl-dev libreadline-dev libffi-dev libbz2-dev\
                         libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev\
-                        software-properties-common
+                        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev\
+                        liblzma-dev libsqlite3-dev software-properties-common
   fi
-  echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
+  echo "\033[0;32m## \033[1;34mruby and python dependencies\033[0;32m installed\033[0;37;00m"
 elif [ $MY_SO = 'MacOS' ]; then
   if [ -z `brew list | grep libxml2` ]; then
-    echo "\033[0;32m## Installing \033[1;34mruby dependencies\033[0;37;00m"
-    brew install coreutils libxml2 qt readline
+    echo "\033[0;32m## Installing \033[1;34mruby and python dependencies\033[0;37;00m"
+    brew install coreutils libxml2 qt readline openssl sqlite3 xz zlib tcl-tk
   fi
-  echo "\033[0;32m## \033[1;34mruby dependencies\033[0;32m installed\033[0;37;00m"
+  echo "\033[0;32m## \033[1;34mruby and python dependencies\033[0;32m installed\033[0;37;00m"
 fi
+
 # Installs nvm
 export NVM_DIR="$HOME/.nvm"
 if [ ! -d "$NVM_DIR" ]; then
