@@ -18,3 +18,5 @@ done
 for profile in `find $profiles -maxdepth 1 -name "*.sh" | sort`; do
   source $profile;
 done
+
+clear
