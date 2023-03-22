@@ -20,11 +20,11 @@ alias vs="vagrant ssh"
 alias vh="vagrant halt"
 alias vd="vagrant destroy -f"
 
-#rails 2 aliases
-alias sa="script/autospec"
-alias ss="script/server"
-alias sc="script/console"
-alias r="rails"
+# #rails 2 aliases
+# alias sa="script/autospec"
+# alias ss="script/server"
+# alias sc="script/console"
+# alias r="rails"
 
 #bundle aliases
 alias bi="bundle install"
