@@ -11,7 +11,6 @@ if [[ $MY_SO = 'MacOS' ]]; then
 elif [[ $MY_SO = 'Linux' ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 fi
-export ANDROID_HOME=$HOME/Android/Sdk
 
 # export ANT_HOME=$JAVA_PROG_DIR/ant
 # export MVN_HOME=$JAVA_PROG_DIR/maven
@@ -36,11 +35,6 @@ export PATH=$PATH:$JAVA_HOME/bin
 # export PATH=$PATH:$GROOVY_HOME/bin
 # export PATH=$PATH:$GRAILS_HOME/bin
 # export PATH=$PATH:$ROO_HOME/bin
-
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 if [ -d $HOME/Android/studio/bin ]; then
   export PATH=$PATH:$HOME/Android/studio/bin
