@@ -17,5 +17,7 @@ fi
 export MANPAGER='less -Xr'
 
 # Defines my executables
+[ $MY_SO = 'MacOS' ] && export PATH="/Applications/Docker.app/Contents/Resources/bin/:$PATH"
 [ $MY_SO = 'MacOS' ] && export PATH="/usr/local/sbin:$PATH"
+
 export PATH="$HOME/.bin:$HOME/bin:$PATH"
