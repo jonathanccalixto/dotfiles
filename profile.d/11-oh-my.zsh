@@ -1,6 +1,5 @@
 # Defines oh-my-zsh plugins to use
-# plugins=(git docker rbenv vi-mode rsync)
-plugins=(git docker rbenv rsync ruby node)
+plugins=(docker git node rbenv rsync ruby rails)
 
 # Defines oh-my-zsh path as zsh
 export ZSH="$HOME/.oh-my-zsh"
