@@ -18,7 +18,11 @@ profiles="$dotfiles/.profile.d"
 # Updates dependencies
 if [ $MY_SO = 'Linux' ]; then
   echo "\033[0;32m## Updating \033[1;34mall package\033[0;37;00m"
-  sudo apt update; sudo apt upgrade -y; sudo apt dist-upgrade -y; apt autoremove -y; autoclear -y
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt dist-upgrade -y
+  sudo apt autoremove -y
+  sudo apt autoclean -y
   echo "\033[0;32m## \033[1;34mpackage\033[0;32m updated\033[0;37;00m"
 fi
 
