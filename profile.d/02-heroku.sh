@@ -11,6 +11,15 @@ if [ -x "$(which heroku)" ]; then
   alias hpc="hp run console"
   alias hpdb="hp run rails dbconsole -p"
 
+  vscode_default_light_theme='  "workbench.colorTheme": "Default Light+",'
+  vscode_default_dark_theme='  "workbench.colorTheme": "Dracula Soft",'
+  vscode_production_light_theme='  "workbench.colorTheme": "Brave Light (rainglow)",'
+  vscode_production_dark_theme='  "workbench.colorTheme": "Brave (rainglow)",'
+  vscode_homolog_light_theme='  "workbench.colorTheme": "Banner Light (rainglow)",'
+  vscode_homolog_dark_theme='  "workbench.colorTheme": "Banner (rainglow)",'
+  vscode_sandbox_light_theme='  "workbench.colorTheme": "Absent Light (rainglow)",'
+  vscode_sandbox_dark_theme='  "workbench.colorTheme": "Absent (rainglow)",'
+
   set-profile() {
     echo -e "\033]50;SetProfile=Default\a"
     vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
@@ -27,32 +36,32 @@ if [ -x "$(which heroku)" ]; then
     [[ $1 = '-Sandbox' ]] && rm -f "$HOME/.heroku-sandbox"
 
     # Clear production Theme
-    sed -i -e 's/Brave (rainglow)/Dracula Soft/g' $vscode_settings
-    sed -i -e 's/Brave Light (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_production_dark_theme}/${vscode_default_dark_theme}/g" $vscode_settings
+    sed -i -e "s/${vscode_production_light_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     # Clear homolog Theme
-    sed -i -e 's/Banner (rainglow)/Dracula Soft/g' $vscode_settings
-    sed -i -e 's/Banner Light (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_homolog_dark_theme}/${vscode_default_dark_theme}/g" $vscode_settings
+    sed -i -e "s/${vscode_homolog_light_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     # Clear sandbox Theme
-    sed -i -e 's/Absent (rainglow)/Dracula Soft/g' $vscode_settings
-    sed -i -e 's/Absent Light (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_sandbox_dark_theme}/${vscode_default_dark_theme}/g" $vscode_settings
+    sed -i -e "s/${vscode_sandbox_light_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     if [[ -f "$HOME/.heroku-production" ]]; then
-      sed -i -e 's/Dracula Soft/Brave (rainglow)/g' $vscode_settings
-      sed -i -e 's/GitHub Plus/Brave Light (rainglow)/g' $vscode_settings
+      sed -i -e "s/${vscode_default_dark_theme}/${vscode_production_dark_theme}/g" $vscode_settings
+      sed -i -e "s/${vscode_default_light_theme}/${vscode_production_light_theme}/g" $vscode_settings
       echo -e "\033]50;SetProfile=Production\a"
     fi
 
     if [[ -f "$HOME/.heroku-homolog" ]]; then
-      sed -i -e 's/Dracula Soft/Absent (rainglow)/g' $vscode_settings
-      sed -i -e 's/GitHub Plus/Absent Light (rainglow)/g' $vscode_settings
+      sed -i -e "s/${vscode_default_dark_theme}/${vscode_sandbox_dark_theme}/g" $vscode_settings
+      sed -i -e "s/${vscode_default_light_theme}/${vscode_sandbox_light_theme}/g" $vscode_settings
       echo -e "\033]50;SetProfile=Homolog\a"
     fi
 
     if [[ -f "$HOME/.heroku-sandbox" ]]; then
-      sed -i -e 's/Dracula Soft/Banner (rainglow)/g' $vscode_settings
-      sed -i -e 's/GitHub Plus/Banner Light (rainglow)/g' $vscode_settings
+      sed -i -e "s/${vscode_default_dark_theme}/${vscode_homolog_dark_theme}/g" $vscode_settings
+      sed -i -e "s/${vscode_default_light_theme}/${vscode_homolog_light_theme}/g" $vscode_settings
       echo -e "\033]50;SetProfile=Sandbox\a"
     fi
   }
@@ -65,16 +74,16 @@ if [ -x "$(which heroku)" ]; then
     vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
 
     # default theme
-    sed -i -e 's/GitHub Plus/Dracula Soft/g' $vscode_settings
+    sed -i -e "s/${vscode_default_light_theme}/${vscode_default_dark_theme}/g" $vscode_settings
 
     # production Theme
-    sed -i -e 's/Brave Light (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e "s/${vscode_production_light_theme}/${vscode_default_dark_theme}/g" $vscode_settings
 
     # homolog Theme
-    sed -i -e 's/Banner Light (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e "s/${vscode_homolog_light_theme}/${vscode_default_dark_theme}/g" $vscode_settings
 
     # sandbox Theme
-    sed -i -e 's/Absent Light (rainglow)/Dracula Soft/g' $vscode_settings
+    sed -i -e "s/${vscode_sandbox_light_theme}/${vscode_default_dark_theme}/g" $vscode_settings
 
     set-profile Dark-Theme
   }
@@ -83,16 +92,16 @@ if [ -x "$(which heroku)" ]; then
     vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
 
     # default theme
-    sed -i -e 's/Dracula Soft/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_default_dark_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     # production Theme
-    sed -i -e 's/Brave (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_production_dark_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     # homolog Theme
-    sed -i -e 's/Banner (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_homolog_dark_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     # sandbox Theme
-    sed -i -e 's/Absent (rainglow)/GitHub Plus/g' $vscode_settings
+    sed -i -e "s/${vscode_sandbox_dark_theme}/${vscode_default_light_theme}/g" $vscode_settings
 
     set-profile Light-Theme
   }
