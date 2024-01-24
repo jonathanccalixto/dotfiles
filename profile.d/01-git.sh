@@ -41,3 +41,5 @@ git config --global push.default current
 
 # git config --global alias.ci 'commit -S'
 # git config --global alias.amend "commit -S --amend"
+
+zstyle ':completion:*:*' ignored-patterns '*ORIG_HEAD'
