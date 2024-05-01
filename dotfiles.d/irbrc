@@ -3,7 +3,11 @@
 # http://gist.github.com/86875
 
 require "irb/completion"         # activate default completion
-require 'irb/ext/save-history'   # activate default history
+begin # activate default history
+  require 'irb/ext/save-history'
+rescue LoadError => e
+  require 'irb/ext/eval_history'
+end
 require "tempfile"               # used for Vim integration
 require 'pp'
 
@@ -55,4 +59,3 @@ begin
 rescue LoadError => e
   warn "Unable to load PRY"
 end
-
