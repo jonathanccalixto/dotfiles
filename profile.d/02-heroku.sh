@@ -12,7 +12,7 @@ if [ -x "$(which heroku)" ]; then
   alias hpdb="hp run rails dbconsole -p"
 
   vscode_default_light_theme='  "workbench.colorTheme": "Default Light+",'
-  vscode_default_dark_theme='  "workbench.colorTheme": "Dracula Soft",'
+  vscode_default_dark_theme='  "workbench.colorTheme": "Dracula Theme",'
   vscode_production_light_theme='  "workbench.colorTheme": "Brave Light (rainglow)",'
   vscode_production_dark_theme='  "workbench.colorTheme": "Brave (rainglow)",'
   vscode_homolog_light_theme='  "workbench.colorTheme": "Banner Light (rainglow)",'
