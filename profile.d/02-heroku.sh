@@ -1,15 +1,15 @@
 if [ -x "$(which heroku)" ]; then
   alias hsc="hs run console"
-  alias hsdb="hs run rails dbconsole -p"
+  alias hsdb="hs run 'rails dbconsole -p'"
 
   alias hhc="hh run console"
-  alias hhdb="hh run rails dbconsole -p"
+  alias hhdb="hh run 'rails dbconsole -p'"
 
   alias hh2c="hh2 run console"
-  alias hh2db="hh2 run rails dbconsole -p"
+  alias hh2db="hh2 run 'rails dbconsole -p'"
 
   alias hpc="hp run console"
-  alias hpdb="hp run rails dbconsole -p"
+  alias hpdb="hp run 'rails dbconsole -p'"
 
   vscode_default_light_theme='  "workbench.colorTheme": "Default Light+",'
   vscode_default_dark_theme='  "workbench.colorTheme": "Dracula Theme",'
