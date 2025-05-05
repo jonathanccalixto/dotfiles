@@ -7,7 +7,9 @@
 # JAVA_SERVERS_DIR=$HOME/programs/java/servers
 
 if [[ $MY_SO = 'MacOS' ]]; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
+  export JAVA_HOME=/usr/local/opt/openjdk\@17
+  export CPPFLAGS="-I$JAVA_HOME/include"
+  # export JAVA_HOME=$(/usr/libexec/java_home)
 elif [[ $MY_SO = 'Linux' ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 fi
