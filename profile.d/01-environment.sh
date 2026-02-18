@@ -1,5 +1,5 @@
 # Defines default editor
-export EDITOR="/bin/vim"
+export EDITOR="/usr/bin/vim"
 # export EDITOR="mate -w"
 
 # Defines SO type
