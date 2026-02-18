@@ -24,7 +24,6 @@ if [[ $MY_SO = 'MacOS' ]]; then
   # Homebrew paths - prioritize over system defaults
   # This ensures we use the latest versions of tools like rsync (3.4.1)
   # instead of the outdated built-in versions
-
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
   # Verify rsync version after PATH is set
@@ -35,5 +34,7 @@ if [[ $MY_SO = 'MacOS' ]]; then
   fi
 fi
 
-export PATH="$HOME/.bin:$HOME/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+# if exists, add loca bins folder to PATH
+[ -d "$HOME/bin" ] &&  export PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.bin" ] &&  export PATH="$HOME/.bin:$PATH"
+[ -d "$HOME/.local/bin" ] &&  export PATH="$HOME/.local/bin:$PATH"
