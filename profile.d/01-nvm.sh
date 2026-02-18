@@ -13,10 +13,13 @@ elif [[ -f "$PWD/.nvmrc" ]]; then
   NODE_VERSION=$(cat $PWD/.nvmrc | sed "s|v||")
 fi
 
+echo "version found: [$NODE_VERSION]"
+
 if [[ "$NODE_VERSION" ]]; then
   [[ ! "$(nvm list | grep $NODE_VERSION | cut -d"v" -f2)" ]] && nvm install $NODE_VERSION
 
   nvm use $NODE_VERSION
 else
-  echo "node version not found"
+  nvm install --lts
+  echo "node version not found, install --lts"
 fi
