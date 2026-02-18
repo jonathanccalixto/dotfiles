@@ -12,7 +12,7 @@ if [[ $MY_SO = 'MacOS' ]]; then
   export CPPFLAGS="-I$JAVA_HOME/include"
   # export JAVA_HOME=$(/usr/libexec/java_home)
 elif [[ $MY_SO = 'Linux' ]]; then
-  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 fi
 
 # export ANT_HOME=$JAVA_PROG_DIR/ant
