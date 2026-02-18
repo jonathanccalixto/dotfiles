@@ -16,9 +16,17 @@ fi
 # Defines manpager
 export MANPAGER='less -Xr'
 
-# Defines my executables
-[ $MY_SO = 'MacOS' ] && export PATH="/Applications/Docker.app/Contents/Resources/bin/:$PATH"
-[ $MY_SO = 'MacOS' ] && export PATH="/usr/local/sbin:$PATH"
+if [[ $MY_SO = 'MacOS' ]]; then
+  # Defines my executables
+  export PATH="/Applications/Docker.app/Contents/Resources/bin/:$PATH"
+  export PATH="/usr/local/sbin:$PATH"
+
+  # Homebrew paths - prioritize over system defaults
+  # This ensures we use the latest versions of tools like rsync (3.4.1)
+  # instead of the outdated built-in versions
+
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
 
 export PATH="$HOME/.bin:$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
