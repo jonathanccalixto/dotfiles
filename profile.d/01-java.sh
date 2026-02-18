@@ -40,5 +40,5 @@ export PATH=$PATH:$JAVA_HOME/bin
 # export PATH=$PATH:$ROO_HOME/bin
 
 if [ -d $HOME/Android/studio/bin ]; then
-  export PATH=$PATH:$HOME/Android/studio/bin
+  export PATH=$PATH:$HOME/Android/Studio/bin
 fi
