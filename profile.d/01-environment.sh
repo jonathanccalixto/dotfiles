@@ -26,6 +26,13 @@ if [[ $MY_SO = 'MacOS' ]]; then
   # instead of the outdated built-in versions
 
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
+  # Verify rsync version after PATH is set
+  if command -v rsync &> /dev/null; then
+    RSYNC_VERSION=$(rsync --version | head -1)
+    # Uncomment next line for debugging:
+    # echo "✓ rsync ready: $RSYNC_VERSION"
+  fi
 fi
 
 export PATH="$HOME/.bin:$HOME/bin:$PATH"
