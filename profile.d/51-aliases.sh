@@ -35,6 +35,10 @@ alias br="bundle exec rails"
 alias rk="bundle exec rake"
 alias bw="bundle show"
 
+if [[ "$MY_SO" == "Linux" ]]; then
+  [ -x "$(command -v espeak)" ] && alias say='espeak'
+fi
+
 bs() {
   bundle exec rspec $*
   [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
