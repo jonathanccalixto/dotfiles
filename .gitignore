@@ -16,6 +16,7 @@ tmtags
 
 # Customs
 dotfiles.d/gitconfig
+dotfiles.d/gitconfig.lock
 profile.d/01-env-custom.sh
 profile.d/02-git-custom.sh
 profile.d/02-gpg-custom.sh
