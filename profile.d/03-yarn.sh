@@ -37,13 +37,15 @@ enable_corepack_if_needed
 
 # Continue with npm-based installations
 if [[ -x "$(which npm)" ]]; then
-  [[ ! -x "$(which socket)" ]] && sh -c "npm i -g @socketsecurity/cli" # Installs socket
+  # Install global packages (only if not already installed)
+  [[ ! -x "$(which claude)" ]] && npm i -g @anthropic-ai/claude-code 2>/dev/null
+  [[ ! -x "$(which socket)" ]] && npm i -g @socketsecurity/cli 2>/dev/null
+  [[ ! -x "$(which eas)" ]] && npm i -g eas-cli@latest 2>/dev/null
 
-  # alias npm="socket npm"
-
-  [[ ! -x "$(which yarn)" ]] && sh -c "npm i -g yarn@latest" # Installs yarn
-  # export PATH="$(yarn global bin):$PATH" # Adds yarn global to $PATH
-  # export PATH="$(npm root -g)/npm/bin:$PATH" # Adds npm global to $PATH
-else
-  echo "NPM not found"
+  # For Node < 24, install yarn via npm if needed
+  _node_major=$(get_node_major_version)
+  if [[ "$_node_major" -lt 24 ]]; then
+    [[ ! -x "$(which yarn)" ]] && npm i -g yarn@latest 2>/dev/null
+  fi
+  unset _node_major
 fi
