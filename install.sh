@@ -210,6 +210,16 @@ if [ ! -d $PYENV ]; then
 fi
 echo "\033[0;32m## \033[1;34mpyenv\033[0;32m installed\033[0;37;00m"
 
+# Installs goenv
+GOENV="$HOME/.goenv"
+if [ ! -d $GOENV ]; then
+  # Donwloads project
+  echo "\033[0;32m## Importing \033[1;34mgoenv\033[0;32m project\033[0;37;00m"
+  git clone https://github.com/go-nv/goenv.git $GOENV
+  echo "\033[0;32m## \033[1;34mgoenv\033[0;32m imported\033[0;37;00m"
+fi
+echo "\033[0;32m## \033[1;34mgoenv\033[0;32m installed\033[0;37;00m"
+
 # Installs ruby and python dependencies
 if [ $MY_SO = 'Linux' ]; then
   if [ -z `dpkg --list | grep libxml2-dev` ]; then
