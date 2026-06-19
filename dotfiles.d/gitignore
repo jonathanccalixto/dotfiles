@@ -68,3 +68,5 @@
 # ###################
 # # /doc/Program*cargo
 # # /config/locales/*
+
+**/.claude/settings.local.json
