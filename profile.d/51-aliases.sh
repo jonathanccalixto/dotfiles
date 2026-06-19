@@ -41,13 +41,13 @@ fi
 
 bs() {
   bundle exec rspec $*
-  [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
+  [ $MY_SO = 'MacOS' ] && say 'Tests completed, please verify that everything is correct!'
 }
 alias bsd="bs --format documentation"
 
 bps() {
   bundle exec parallel_rspec $*
-  [ $MY_SO = 'MacOS' ] && say 'Testes executados, favor conferir se está tudo certo!'
+  [ $MY_SO = 'MacOS' ] && say 'Tests completed, please verify that everything is correct!'
 }
 alias bpsd="bps -- -f documentation --"
 
