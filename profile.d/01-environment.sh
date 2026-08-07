@@ -26,6 +26,9 @@ if [[ $MY_SO = 'MacOS' ]]; then
   # instead of the outdated built-in versions
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
+  # habilitando o uso do postgres
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
   # Verify rsync version after PATH is set
   if command -v rsync &> /dev/null; then
     RSYNC_VERSION=$(rsync --version | head -1)
